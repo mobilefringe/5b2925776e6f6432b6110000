@@ -71,54 +71,7 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
         el: '#app',
         data: function () {
             return {
-                menu_items: [
-                    {
-                        name: "Directory",
-                        href: "/stores"
-                    },
-                    {
-                        name: "Promotions & Events",
-                        href: "/promotions-and-events"
-                    },
-                    {
-                        name: "About",
-                        id: "menu1",
-                        href: "",
-                        sub_menu: [
-                            {
-                                name: "Services",
-                                href: "/pages/"
-                            },
-                            {
-                                name: "Newsletter",
-                                href: "/newsletter"
-                            }
-                        ]
-                    },
-                    {
-                        name: "Contact",
-                        id: "menu2",
-                        href: "",
-                        sub_menu: [
-                            {
-                                name: "Jobs",
-                                href: "/jobs"
-                            },
-                            {
-                                name: "Location",
-                                href: "/location"
-                            },
-                            {
-                                name: "Management",
-                                href: "/pages/"
-                            },
-                            {
-                                name: "Leasing",
-                                href: "/pages/"
-                            }
-                        ]
-                    }
-                ],
+                menu_items: MenuItems,
                 social_media: [
                     {
                         name: "Facebook",
