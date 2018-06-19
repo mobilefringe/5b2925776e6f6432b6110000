@@ -1,7 +1,17 @@
 [
     {
         "name": "Directory",
-        "href": "/stores"
+        "href": "#",
+        "sub_menu": [
+            {
+                "name": "Services",
+                "href": "/pages/"
+            },
+            {
+                "name": "Newsletter",
+                "href": "/newsletter"
+            }
+        ]
     },
     {
         "name": "Promotions & Events",
