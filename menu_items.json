@@ -2,6 +2,7 @@
     {
         "name": "Stores",
         "href": "#",
+        "id": "menu2",
         "sub_menu": [
             {
                 "name": "Stores",
