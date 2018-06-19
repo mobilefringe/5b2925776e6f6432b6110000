@@ -15,7 +15,11 @@
         ]
     },
     {
-        "name": "Promotions & Events",
+        "name": "Promotions",
+        "href": "/promotions-and-events"
+    },
+    {
+        "name": "Events",
         "href": "/promotions-and-events"
     },
     {
