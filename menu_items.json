@@ -28,8 +28,8 @@
         "href": "",
         "sub_menu": [
             {
-                "name": "Leasing",
-                "href": "/pages/"
+                "name": "Hours",
+                "href": "/hours"
             },
             {
                 "name": "Jobs",
