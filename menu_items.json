@@ -28,6 +28,10 @@
         "href": "",
         "sub_menu": [
             {
+                "name": "Leasing",
+                "href": "/pages/"
+            },
+            {
                 "name": "Jobs",
                 "href": "/jobs"
             },
@@ -38,11 +42,8 @@
             {
                 "name": "Management",
                 "href": "/pages/"
-            },
-            {
-                "name": "Leasing",
-                "href": "/pages/"
             }
+            
         ]
     },
     {
