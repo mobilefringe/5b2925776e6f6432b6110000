@@ -4,8 +4,8 @@
         "href": "#",
         "sub_menu": [
             {
-                "name": "Services",
-                "href": "/pages/"
+                "name": "Stores",
+                "href": "/stores"
             },
             {
                 "name": "Newsletter",
