@@ -23,21 +23,6 @@
         "href": "/events"
     },
     {
-        "name": "About",
-        "id": "menu1",
-        "href": "",
-        "sub_menu": [
-            {
-                "name": "Services",
-                "href": "/pages/"
-            },
-            {
-                "name": "Newsletter",
-                "href": "/newsletter"
-            }
-        ]
-    },
-    {
         "name": "Contact",
         "id": "menu2",
         "href": "",
