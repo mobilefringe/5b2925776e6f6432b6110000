@@ -365,7 +365,7 @@ footer {
 .footer_privacy {
     padding: 15px 0;
     background: $secondary;
-    color: $text;;
+    color: #fff;;
     .col-md-6:last-child .footer_text {
         text-align: right;
     }
