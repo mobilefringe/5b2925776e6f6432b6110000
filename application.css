@@ -374,7 +374,7 @@ footer {
         font-family: Georgia-Italic;
         font-size: 0.6875rem;
         line-height: 16px;
-        color: $text;;
+        color: #fff;
         a {
             color: #fff;
             &:hover {
