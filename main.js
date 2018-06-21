@@ -77,6 +77,9 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
                         name: "Facebook",
                         url: "https://www.facebook.com/GerrardSquare",
                         iconClass: "fab fa-facebook-f"
+                    },
+                    {
+                        url: "https://www.instagram.com/gerrardsquare/"
                     }
                 ],
             }
