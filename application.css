@@ -376,7 +376,7 @@ footer {
         line-height: 16px;
         color: $text;;
         a {
-            color: $text;;
+            color: #fff;
             &:hover {
                 color: $text;;    
             }
