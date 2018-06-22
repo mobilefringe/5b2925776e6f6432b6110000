@@ -17,11 +17,11 @@
                                 <a class="store_nav_link active_store_nav hvr-underline-from-center" href="/stores">Directory</a>
                             </div>
                             <div class="col-md-3">
-                                <a class="store_nav_link" href="/map">Centre Map</a>
+                                <a class="store_nav_link hvr-underline-from-center" href="/map">Centre Map</a>
                             </div>
                             <div class="col-md-3">
                                 <span>Sort By: </span>
-                                <a class="store_nav_link" v-on:click="changeMode('alphabetical')">Alphabetical</a>
+                                <a class="store_nav_link hvr-underline-from-center" v-on:click="changeMode('alphabetical')">Alphabetical</a>
                             </div>
                             <div class="col-md-3">
                                 <v-select v-model="selectedCat" :options="dropDownCats" :searchable="false" :on-change="filteredByCategory" class="category-select" :placeholder="$t('stores_page.sort_by_cats')" id="selectByCat"></v-select>
