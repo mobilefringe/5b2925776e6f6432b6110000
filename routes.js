@@ -133,16 +133,16 @@ define([], function () {
             ]
         },
         {
-            path: '/promotions-and-events',
+            path: '/promotions',
             component: view('default'),
             children: [
                 {
                     path: '',
-                    component: view('promotions-and-events'),
+                    component: view('promotions'),
                     meta: {
-                        pageName: 'Promotions & Events',
+                        pageName: 'Promotions',
                     },
-                    name: 'promotions-and-events'
+                    name: 'promotions='
                 }
             ]
         },
