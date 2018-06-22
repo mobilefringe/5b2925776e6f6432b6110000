@@ -140,7 +140,7 @@
                 },
                 currentStore: function () {
                     if (_.includes(this.currentStore.store_front_url_abs, 'missing')) {
-                        this.currentStore.store_front_url_abs = this.property.default_logo_url
+                        this.currentStore.store_front_url_abs = this.property.default_logo_url;
                     }
                     
                     var vm = this;
