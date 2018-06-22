@@ -436,7 +436,7 @@ footer {
     }
 }
 .feature_item {
-        overflow: hidden;
+    overflow: hidden;
     img {
         max-width: 100%
     }
