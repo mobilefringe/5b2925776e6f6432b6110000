@@ -738,6 +738,7 @@ footer {
         color: $text;
         text-decoration: none;
         text-transform: uppercase;
+        overflow:visible;
         // &::after {
         //     content: " ";
         //     background: transparent;
