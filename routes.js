@@ -38,11 +38,11 @@ define([], function () {
             children: [
                 {
                     path: '',
-                    component: view('jobs'),
+                    component: view('events'),
                     meta: {
-                        pageName: 'Careers',
+                        pageName: 'Events',
                     },
-                    name: 'jobs'
+                    name: 'events'
                 },
                 {
                     path: ':id',
