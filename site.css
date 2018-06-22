@@ -1184,7 +1184,7 @@ footer {
   z-index: -1;
   left: 51%;
   right: 51%;
-  bottom: 0;
+  bottom: -25px;
   background: $primary;
   height: 4px;
   -webkit-transition-property: left, right;
