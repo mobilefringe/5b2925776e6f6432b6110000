@@ -140,7 +140,7 @@
                 },
                 currentStore: function () {
                     if (_.includes(this.currentStore.store_front_url_abs, 'missing')) {
-                        this.currentStore.store_front_url_abs = "http://placehold.it/600x600"
+                        this.currentStore.store_front_url_abs = this.property.default_logo_url
                     }
                     
                     var vm = this;
@@ -163,7 +163,7 @@
                         var current_promo = vm.findPromoById(value);
                         
                         if (_.includes(current_promo.image_url, 'missing')) {
-                            current_promo.image_url = vm.property.default_logo_url;
+                            current_promo.image_url = "http://placehold.it/1560x800/757575";
                         }
                         current_promo.description_short = _.truncate(current_promo.description, { 'length': 150, 'separator': ' ' });
 
