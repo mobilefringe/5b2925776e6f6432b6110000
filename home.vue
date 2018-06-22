@@ -18,7 +18,7 @@
                 <div class="main_container">
                     <div v-if="featureItems" class="row">
                         <div v-for="item in featureItems" class="col-sm-4 feature_item">
-                            <div>
+                            <div class="feature_image_container">
                                 <img :src="item.image_url" :alt="item.name" />
                             </div>
                         </div>
