@@ -39,6 +39,7 @@
 	define(["Vue", "vuex", "json!site.json"], function(Vue, Vuex, site) {
 		return Vue.component("location-component", {
             template: template, // the variable template will be injected
+            props:['inside_banner'],
             data: function () {
                 return {
                     dataLoaded: false,
