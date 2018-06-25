@@ -76,6 +76,7 @@
         Vue.use(VeeValidate);
         return Vue.component("contact-component", {
             template: template, // the variable template will be injected
+            props:['inside_banner'],
             data: function data() {
                 return {
                     dataLoaded: false,
