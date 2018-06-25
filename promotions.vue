@@ -4,6 +4,7 @@
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
                 <div class="inside_header_background">
+                <!--inside_banner-->
                     <div class="main_container">
                         <h2>Promotions</h2>
                     </div>
