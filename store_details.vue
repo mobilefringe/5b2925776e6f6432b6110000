@@ -114,7 +114,7 @@
         Vue.use(BootstrapVue);
         return Vue.component("store-details-component", {
             template: template, // the variable template will be injected,
-            props: ['id'],
+            props: ['id','inside_banner'],
             data: function () {
                 return {
                     dataLoaded: false,
