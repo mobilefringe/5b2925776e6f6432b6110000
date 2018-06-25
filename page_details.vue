@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background"  :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
                     <div class="main_container">
                         <h2 v-html="currentPage.title"></h2>
                     </div>
@@ -27,7 +27,7 @@
     define(["Vue", "vuex"], function (Vue, Vuex) {
         return Vue.component("page-details-component", {
             template: template, // the variable template will be injected,
-            props: ['id'],
+            props: ['id','inside_banner'],
             data: function data() {
                 return {
                     dataLoaded: false,
