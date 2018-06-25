@@ -5,7 +5,7 @@
             <div v-if="dataLoaded" v-cloak>
                 <div class="inside_header_background">
                     <div class="main_container">
-                        <h2>Events & Promotions</h2>
+                        <h2>Promotions</h2>
                     </div>
                 </div>
                 <div class="main_container mobile_padding margin_30">
