@@ -70,6 +70,7 @@ define(["Vue", "vuex", "moment", "moment-timezone", "vue-moment", "bootstrap-vue
         Vue.use(BootstrapVue);
         return Vue.component("jobs-component", {
             template: template, // the variable template will be injected
+            props:['inside_banner'],
             data: function () {
                 return {
                     dataLoaded: false,
