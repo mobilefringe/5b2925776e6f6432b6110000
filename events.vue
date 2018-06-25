@@ -120,6 +120,7 @@
         Vue.use(VueLazyload);
         return Vue.component("events-component", {
             template: template, // the variable template will be injected,
+            props:['inside_banner'],
             data: function () {
                 return {
                     dataLoaded: false,
