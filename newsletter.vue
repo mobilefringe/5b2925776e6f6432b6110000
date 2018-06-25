@@ -59,6 +59,7 @@
         Vue.use(VeeValidate);
         return Vue.component("newsletter-component", {
             template: template, // the variable template will be injected
+            props:['inside_banner'],
             data: function() {
                 return {
                     dataLoaded: true,
