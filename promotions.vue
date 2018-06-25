@@ -85,6 +85,7 @@
             created (){
                 this.loadData().then(response => {
                     this.dataLoaded = true;
+                    console.log("inside_banner", inside_banner)
                 });
             },
             computed: {
