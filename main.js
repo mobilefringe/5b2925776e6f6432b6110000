@@ -90,7 +90,8 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
             this.loadData().then(response => {
                 this.$store.dispatch("setDataLoaded", true); 
                 this.property.default_logo_url = "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1529701995203/default_logo_600.png";               
-                 var floor_maps_repo = this.findRepoByName('SVG Map');
+                 var inside_banner = this.findRepoByName('SVG Map');
+                 
             });
         },
         watch: {
