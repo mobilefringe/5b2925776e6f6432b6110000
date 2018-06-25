@@ -84,6 +84,7 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
                         iconClass: "fab fa-instagram"
                     }
                 ],
+                inside_banner : null
             }
         },
         created: function ()  {
