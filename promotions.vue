@@ -3,8 +3,8 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background"   v-bind:style="{ backgroundImage: 'url(' + banner.image_url + ')' }">
-                <!--inside_banner-->
+                <div class="inside_header_background"   v-bind:style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                <!---->
                     <div class="main_container">
                         <h2>Promotions</h2>
                     </div>
