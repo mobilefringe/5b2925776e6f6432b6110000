@@ -94,8 +94,8 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
                 var i_banner = this.findRepoByName('Inside Page Banner');
                 console.log("i_banner", i_banner);
                 if(i_banner !== null && i_banner !== undefined && i_banner.length > 0) {
-                    console.log("i_banner", i_banner);
                     this.inside_banner = i_banner.images[0];
+                    console.log("inside_banner", i_banner.images[0] )
                 }
             });
         },
