@@ -52,7 +52,7 @@
         Vue.component('social-sharing', SocialSharing);
         return Vue.component("promo-details-component", {
             template: template, // the variable template will be injected,
-            props: ['id'],
+            props: ['id','inside_banner'],
             data: function() {
                 return {
                     dataLoaded: false,
