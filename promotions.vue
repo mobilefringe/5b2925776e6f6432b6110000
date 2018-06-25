@@ -74,7 +74,7 @@
         Vue.use(VueLazyload);
         return Vue.component("promotions-component", {
             template: template, // the variable template will be injected,
-            props: ['inside_banner'],
+            props:['menu_items', 'social_media'],
             data: function () {
                 return {
                     dataLoaded: false,
