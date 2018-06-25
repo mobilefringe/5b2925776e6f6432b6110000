@@ -118,7 +118,7 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
             loadData: async function() {
                 try{
                     await this.$store.dispatch('initializeApi', { site: "gerrardsquare", version: "v4" });
-                    
+                    await Promise.all([this.$store.dispatch("INITIALIZE_LOCALE")]);
                     let results = await Promise.all([this.$store.dispatch("INITIALIZE_LOCALE"), this.$store.dispatch("getData", "property"), this.$store.dispatch("getData", "hours"), this.$store.dispatch("getData", "stores"), this.$store.dispatch("getData", "repos")]);
                 } catch (e) {
                     console.log("Error loading data: " + e.message);    
