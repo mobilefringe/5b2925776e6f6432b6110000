@@ -83,7 +83,7 @@
                     //         insta.caption.text = _.truncate(insta.caption.text, { 'length': 60, 'separator': ' ' });
                     //     }
                     // });
-                    var socialFeed = this.findRepoByName();
+                    var socialFeed = this.findRepoByName("Leasing Images");
 
                     this.dataLoaded = true;
                 });
