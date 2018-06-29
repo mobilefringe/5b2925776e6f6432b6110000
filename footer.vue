@@ -114,7 +114,7 @@
             methods: {
                 loadData: async function() {
                     try {
-                        let results = await Promise.all([this.$store.dispatch('LOAD_PAGE_DATA', {url: "http://twinpines.mallmaverick.com/api/v3/twinpines/social.json"})]);
+                        let results = await Promise.all([this.$store.dispatch('getData', {url: "http://twinpines.mallmaverick.com/api/v3/twinpines/social.json"})]);
                         return results;
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
