@@ -41,7 +41,7 @@
                                                     <span v-else class="promo_date">{{ promo.start_date | moment("MMMM D", timezone)}}</span>
                                                 </p>
                                                 <div class="promo_desc" v-html="promo.description_short"></div>
-                                                <router-link :to="'/promotions/'+ promo.slug" >
+                                                <router-link :to="'/promotions/'+ promo.slug" class="hvr-icon-forward">
 						                            <i class="fa fa-caret-right"></i> <span class="read_more">View Promotion Details</span>
 				                                </router-link>
                                             </div>
