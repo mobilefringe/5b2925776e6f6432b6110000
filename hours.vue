@@ -5,7 +5,7 @@
             <div v-if="dataLoaded" v-cloak>
                 <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
                     <div class="main_container">
-                        <h2>Jobs</h2>
+                        <h2>Hours</h2>
                     </div>
                 </div>
                 <div class="main_container mobile_padding margin_30"><div v-if="dataLoaded" v-cloak>
