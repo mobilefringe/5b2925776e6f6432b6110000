@@ -68,7 +68,7 @@
             data: function data() {
                 return {
                     dataLoaded: false,
-                    instaFeed: null,
+                    leasingFeed: null,
                     siteInfo: site,
                     newsletter_email: ""
                 }
@@ -84,7 +84,7 @@
                     //     }
                     // });
                     var socialFeed = this.findRepoByName("Leasing Images");
-
+                    if(socialFeed != )
                     this.dataLoaded = true;
                 });
             },
