@@ -3,6 +3,11 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" class="main_container margin_30" v-cloak> 
+            <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                    <div class="main_container">
+                        <h2>Jobs</h2>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="hours_heading caps">Hours</h3>
