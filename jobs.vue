@@ -39,7 +39,7 @@
                                                 </p>
                                                 <div class="promo_desc" v-html="job.description_short"></div>
                                                 <router-link :to="'/jobs/'+ job.slug" class="hvr-icon-forward">
-						                            <i class="fa fa-caret-right"></i> <a class="read_more">View Job Details</a>
+						                            <i class="fa fa-caret-right hvr-icon"></i> <a class="read_more">View Job Details</a>
 				                                </router-link>
                                             </div>
                                         </div>
