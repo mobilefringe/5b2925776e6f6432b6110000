@@ -28,6 +28,7 @@ $primary: #b70200;
 $primaryRGB: rgb(183, 2, 0);
 $secondary: #504b4b;
 $text: #292929;
+$$secondary_text: #fff;
 
 /* *** GENERAL STYLES *** */
 html { 
