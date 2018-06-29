@@ -14,53 +14,7 @@
                             <img class="img_max" src="http://placehold.it/440x1200" alt="" />    
                         </div>
                         <div class="details_col_9">
-                            <!-- PROMOTIONS -->
-                            <!--<b-card no-body class="mb-1 inside_page_toggle">-->
-                            <!--    <b-card-header header-tag="header" class="p-1" role="tab">-->
-                            <!--        <b-btn block @click="togglePromos = !togglePromos" :aria-expanded="togglePromos ? 'true' : 'false'" aria-controls="togglePromotions">-->
-                            <!--            Promotions-->
-                            <!--            <i v-if="togglePromos"  class="fa fa-minus f"></i>-->
-                            <!--            <i v-else  class="fa fa-plus"></i>-->
-                            <!--        </b-btn>-->
-                            <!--    </b-card-header>-->
-                            <!--    <b-collapse v-if="promoList.length >= 1" v-for="promo in promoList" v-model="togglePromos" role="tabpanel" id="togglePromotions" class="accordion_body">-->
-                            <!--        <b-card-body>-->
-                            <!--            <div class="row">-->
-                            <!--                <div class="col-md-5" v-if="">-->
-                            <!--                    <img :src="promo.image_url" :alt="'Promotion: ' + promo.name" class="max_img" />-->
-                            <!--                </div>-->
-                            <!--                <div class="col-md-7">-->
-                            <!--                    <h3 class="promo_name">{{promo.name}}</h3>-->
-                            <!--                    <p class="promo_store_name">-->
-                            <!--                        <router-link v-if="promo.promotionable_type == 'Store'" :to="'/stores/'+ promo.store.slug">-->
-                            <!--                            {{ promo.store.name }}-->
-                            <!--                        </router-link>-->
-                            <!--                        <span v-else>{{ property.name }}</span>-->
-                            <!--                        <span>| </span>-->
-                            <!--                        <span v-if="isMultiDay(promo)" class="promo_date">{{ promo.start_date | moment("MMMM D", timezone)}} to {{ promo.end_date | moment("MMMM D", timezone)}}</span>-->
-                            <!--                        <span v-else class="promo_date">{{ promo.start_date | moment("MMMM D", timezone)}}</span>-->
-                            <!--                    </p>-->
-                            <!--                    <div class="promo_desc" v-html="promo.description_short"></div>-->
-                            <!--                    <router-link :to="'/promotions/'+ promo.slug" >-->
-						                      <!--      <i class="fa fa-caret-right"></i> <span class="read_more">View Promotion Details</span>-->
-				                        <!--        </router-link>-->
-                            <!--                </div>-->
-                            <!--            </div>-->
-                            <!--            <hr class="promo_separator" />-->
-                            <!--        </b-card-body>-->
-                            <!--    </b-collapse>-->
-                            <!--    <b-collapse v-if="promoList.length == 0" v-model="togglePromos" role="tabpanel" id="togglePromotions" class="accordion_body">-->
-                            <!--        <b-card-body>-->
-                            <!--            <div class="row">-->
-                            <!--                <div class="col-md-12">-->
-                            <!--                    <p>Sorry. There are no Promotions posted at this time. Please check back soon!</p>-->
-                            <!--                </div>-->
-                            <!--            </div>-->
-                            <!--            <hr class="promo_separator" />-->
-                            <!--        </b-card-body>-->
-                            <!--    </b-collapse>-->
-                            <!--</b-card>-->
-                                                        <!-- EVENTS -->
+                            <!-- EVENTS -->
                             <b-card no-body class="mb-1 inside_page_toggle">
                                 <b-card-header header-tag="header" class="p-1" role="tab">
                                     <b-btn block @click="toggleEvents = !toggleEvents" :aria-expanded="toggleEvents ? 'true' : 'false'" aria-controls="toggleEvents">
