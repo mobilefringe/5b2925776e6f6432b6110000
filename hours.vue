@@ -2,13 +2,19 @@
     <div> <!-- without an outer container div this component template will not render -->
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
-            <div v-if="dataLoaded" class="main_container margin_30" v-cloak> 
+            <div v-if="dataLoaded" v-cloak>
                 <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
                     <div class="main_container">
                         <h2>Jobs</h2>
                     </div>
                 </div>
-                <div class="row">
+                <div class="main_container mobile_padding margin_30"><div v-if="dataLoaded" v-cloak>
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                    <div class="main_container">
+                        <h2>Jobs</h2>
+                    </div>
+                </div>
+                <div class="main_container mobile_padding margin_30">
                     <div class="col-md-12">
                         <h3 class="hours_heading caps">Hours</h3>
                         <div class="hours_container">
