@@ -2,6 +2,7 @@ define([], function () {
     return [
         {
             path: '/',
+            name:'home'
             component: view('home')
         },
         {
