@@ -541,7 +541,7 @@ footer {
     background: $primary;
     font-family: Avenir-Medium;
     font-size: 1.125rem;
-    color: $text;;
+    color: $text;
     text-align: center;
     &:before {
         content: '';
