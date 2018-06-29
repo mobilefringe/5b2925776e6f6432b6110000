@@ -27,7 +27,7 @@
 $primary: #b70200;
 $primaryRGB: rgb(183, 2, 0);
 $secondary: #504b4b;
-$text: #fff;
+$text: #292929;
 
 /* *** GENERAL STYLES *** */
 html { 
@@ -910,7 +910,9 @@ footer {
 }
 
 /******* Contact Us ********/
-
+.submit.animated_btn{
+    margin: 20px 0;
+}
 @media(max-width: 768px){
     .visible_phone {
         display: block;
