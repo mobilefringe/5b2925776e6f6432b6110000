@@ -93,7 +93,8 @@
                     'property',
                     'timezone',
                     'getPropertyHours',
-                    'getPropertyHolidayHours'
+                    'getPropertyHolidayHours',
+                    'findRepoByName'
                 ]),
                 weekdayHours() {
                     return _.filter(this.getPropertyHours, function(o) { return o.day_of_week == 1 });
