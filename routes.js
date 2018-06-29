@@ -79,6 +79,20 @@ define([], function () {
             ]
         },
         {
+            path: '/hours',
+            component: view('default'),
+            children: [
+                {
+                    path: '',
+                    component: view('hours'),
+                    meta: {
+                        pageName: 'Hours',
+                    },
+                    name: 'hours'
+                }
+            ]
+        },
+        {
             path: '/location',
             component: view('default'),
             children: [
