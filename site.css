@@ -605,7 +605,7 @@ footer {
         font-family: Georgia-Italic;
         font-size: 1.375rem;
         line-height: normal;
-        color: $text;;
+        color: #ff;;
         text-align: left;
         .fa {
             float: right;
