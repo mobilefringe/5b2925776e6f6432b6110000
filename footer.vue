@@ -83,7 +83,7 @@
                     //         insta.caption.text = _.truncate(insta.caption.text, { 'length': 60, 'separator': ' ' });
                     //     }
                     // });
-                    var socialFeed = 
+                    var socialFeed = this.findRepoByName();
 
                     this.dataLoaded = true;
                 });
