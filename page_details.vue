@@ -15,7 +15,7 @@
                         </div>
                         <div class="details_col_9">
                             <div class="page_body" v-html="currentPage.body"></div>
-                            <div v-if="this.leasingImages">
+                            <div v-if="leasingImages">
                                 
                             </div>
                         </div>
