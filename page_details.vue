@@ -50,7 +50,7 @@
             methods: {
                 updateCurrentPage(id) {
                     var _this = this;
-                    this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + this.id + ".json" }).then(function (response) {
+                    this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                         _this.currentPage = response.data;
                         _this.dataLoaded = true;
                     }, function (error) {
