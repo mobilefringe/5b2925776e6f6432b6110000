@@ -15,6 +15,9 @@
                         </div>
                         <div class="details_col_9">
                             <div class="page_body" v-html="currentPage.body"></div>
+                            <div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
