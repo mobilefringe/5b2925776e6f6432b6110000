@@ -17,7 +17,7 @@
                 </div>
                 <div class="main_container">
                     <div>
-                        <p v-if="property.descripton.length > 0"> {{property.descripton}}</p>
+                        <p v-if="property.description.length > 0"> {{property.description}}</p>
                     </div>
                 </div>
                 <div class="main_container">
