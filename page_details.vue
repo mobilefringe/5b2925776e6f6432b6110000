@@ -58,7 +58,7 @@
                         var repo_data = this.findRepoByName("Leasing Images");
                         if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
                             photos = repo_data.images;
-                            this.leasingFeed = _.slice(socialFeed, [0], [14]);
+                            this.leasing_images = _.slice(socialFeed, [0], [14]);
                             console.log("leasingFeed", this.leasingFeed)
                         }
                         _this.dataLoaded = true;
