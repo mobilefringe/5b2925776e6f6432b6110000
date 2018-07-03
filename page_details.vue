@@ -18,7 +18,7 @@
                             <div v-if="leasingImages">
                                 <div v-for="image in leasingImages" class="col-md-6 leasing_photo_container">
                                     <a :href="image.image_url" :data-lightbox="image.image_url">
-                                        <div class="leasing_photo":style="{ backgroundImage: 'url(' +image.image_url+ ')' }"></div>
+                                        <div class="leasing_photo" :style="{ backgroundImage: 'url(' +image.image_url+ ')' }"></div>
                                         <p style="display:none;">{{image.id}}</p>
                                     </a>
                                 </div>
