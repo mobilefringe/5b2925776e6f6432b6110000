@@ -16,7 +16,7 @@
                     </slick>
                 </div>
                 <div class="main_container">
-                    <div>
+                    <div class="welcome_message">
                         <p v-if="property.description.length > 0"> {{property.description}}</p>
                     </div>
                 </div>
