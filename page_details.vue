@@ -56,11 +56,12 @@
                     var _this = this;
                     this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                         _this.currentPage = response.data;
-                        if(_.includes(_this.id,'leasing'))
-                        var repo_data = this.findRepoByName("Leasing Images");
-                        if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
-                            this.leasingImages = repo_data.images;
-                            console.log("this.leasingImages", this.leasingImages)
+                        if(_.includes(_this.id,'leasing')) {
+                            var repo_data = this.findRepoByName("Leasing Images");
+                            if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
+                                this.leasingImages = repo_data.images;
+                                console.log("this.leasingImages", this.leasingImages)
+                            }
                         }
                         _this.dataLoaded = true;
                     }, function (error) {
