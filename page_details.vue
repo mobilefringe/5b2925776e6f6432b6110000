@@ -66,8 +66,8 @@
                         if(_.includes(_this.id,'leasing')) {
                             var repo_data = _this.findRepoByName("Leasing Images");
                             if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
-                                this.leasingImages = repo_data.images;
-                                console.log("this.leasingImages", this.leasingImages)
+                                _this.leasingImages = repo_data.images;
+                                console.log("this.leasingImages", _this.leasingImages)
                             }
                         }
                         _this.dataLoaded = true;
