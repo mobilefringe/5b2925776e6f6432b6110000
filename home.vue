@@ -16,6 +16,9 @@
                     </slick>
                 </div>
                 <div class="main_container">
+                    <div>
+                        <p v-if="property.descripton.length > 0"> </p>
+                    </div>
                 </div>
                 <div class="main_container">
                     <div v-if="featureItems" class="row">
