@@ -5,7 +5,7 @@
             <div v-if="dataLoaded" v-cloak>
                 <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
                     <div class="main_container">
-                        <h2>Jobs</h2>
+                        <h2>Hours</h2>
                     </div>
                 </div>
                 <div class="main_container mobile_padding margin_30">
@@ -13,10 +13,10 @@
                         <h3 class="hours_heading caps">Hours</h3>
                         <div class="hours_container">
                             <div class="row hours_div" v-for="hour in hours">
-                                <div class="col-xs-6 col-sm-4 col-md-3">
+                                <div class="col-xs-5 col-sm-4 col-md-3">
                                     {{hour.day_of_week | moment("dddd", timezone)}}
                                 </div>
-                                <div class="col-xs-6 col-md-3">
+                                <div class="col-xs-7 col-md-3">
                                     <span class="">
                                         {{hour.open_time | moment("h:mm A", timezone)}} - {{hour.close_time | moment("h:mm A", timezone)}}    
                                     </span>
