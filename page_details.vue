@@ -55,7 +55,7 @@
                     var _this = this;
                     this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                         _this.currentPage = response.data;
-                        var socialFeed = this.findRepoByName("Leasing Images");
+                        var photos = this.findRepoByName("Leasing Images");
                         if(socialFeed != null && socialFeed !== undefined && socialFeed.images.length > 0){
                             socialFeed = socialFeed.images;
                             this.leasingFeed = _.slice(socialFeed, [0], [14]);
