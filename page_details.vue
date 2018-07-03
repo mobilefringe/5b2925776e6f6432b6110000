@@ -34,7 +34,8 @@
             data: function data() {
                 return {
                     dataLoaded: false,
-                    currentPage: null
+                    currentPage: null,
+                    leasingImages : null
                 }
             },
             created() {
