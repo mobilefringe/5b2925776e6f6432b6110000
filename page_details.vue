@@ -58,8 +58,8 @@
                         var repo_data = this.findRepoByName("Leasing Images");
                         if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
                             var leasing_photos = repo_data.images;
-                            this.leasing_images = _.slice(leasing_photos, [0], [14]);
-                            console.log("leasingFeed", this.leasingFeed)
+                            this.leasingImages = _.slice(leasing_photos, [0], [14]);
+                            console.log("this.leasingImages", this.leasingImages)
                         }
                         _this.dataLoaded = true;
                     }, function (error) {
