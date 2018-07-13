@@ -65,7 +65,7 @@
                     this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                         _this.currentPage = response.data;
                         if(_.includes(_this.id,'leasing')) {
-                            var temp_repo = this.findRepoByName('Promotions Banner').images;
+                            var temp_repo = this.findRepoByName('Leasing Banner').images;
                             if(temp_repo != null) {
                                 this.pageBanner = temp_repo[0];
                             } else {
