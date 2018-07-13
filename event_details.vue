@@ -54,7 +54,7 @@
         Vue.component('social-sharing', SocialSharing);
 		return Vue.component("event-details-component", {
 			template: template, // the variable template will be injected,
-			props: ['id','inside_banner'],
+			props: ['id'],
 			data: function() {
 				return {
 					dataLoaded: false,
@@ -110,7 +110,7 @@
 				shareURL(slug) {
                     var share_url = window.location.href
                     return share_url
-                },
+                }
 			}
 		});
 	});
