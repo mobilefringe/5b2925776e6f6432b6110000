@@ -61,9 +61,9 @@
             },
             methods: {
                 updateCurrentPage(id) {
-                    var _this = this;
-                    this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
-                         this.$nextTick(function() {
+                    this.$nextTick(function() {
+                        var _this = this;
+                        this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                             _this.currentPage = response.data;
                             if(_.includes(_this.id,'leasing')) {
                                 var temp_repo = _this.findRepoByName('Leasing Banner').images;
@@ -91,10 +91,10 @@
                             }
                             
                             _this.dataLoaded = true;
-                         });
-                    }, function (error) {
-                        console.error( "Could not retrieve data from server. Please check internet connection and try again.");
-                        _this.$router.replace({ name: 'home' });
+                        }, function (error) {
+                            console.error( "Could not retrieve data from server. Please check internet connection and try again.");
+                            _this.$router.replace({ name: 'home' });
+                        });
                     });
                 }
             }
