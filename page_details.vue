@@ -45,6 +45,7 @@
                 }
             },
             created() {
+                
                 this.updateCurrentPage(this.id);
             },
             watch: {
@@ -64,10 +65,18 @@
                     this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                         _this.currentPage = response.data;
                         if(_.includes(_this.id,'leasing')) {
+                            var temp_repo = this.findRepoByName('Promotions Banner').images;
+                            if(temp_repo != null) {
+                                this.pageBanner = temp_repo[0];
+                            } else {
+                                this.pageBanner = {
+                                    "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                                }
+                            }
+                
                             var repo_data = _this.findRepoByName("Leasing Images");
                             if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
                                 _this.leasingImages = repo_data.images;
-                                console.log("this.leasingImages", _this.leasingImages)
                             }
                         }
                         _this.dataLoaded = true;
