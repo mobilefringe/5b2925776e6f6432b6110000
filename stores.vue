@@ -156,7 +156,6 @@
             computed: {
                 ...Vuex.mapGetters([
                     'property',
-                    'findRepoByName',
                     'processedStores',
                     'processedCategories',
                     'storesByAlphaIndex',
@@ -214,7 +213,7 @@
             methods: {
                 loadData: async function () {
                     try {
-                        let results = await Promise.all([this.$store.dispatch("getData", "repos"), this.$store.dispatch("getData", "categories")]);
+                        let results = await Promise.all([this.$store.dispatch("getData", "categories")]);
                         return results;
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
