@@ -8,23 +8,23 @@
                         <div v-if="homeBanners" v-for="banner in homeBanners">
                             <a v-if="banner.url" :href="banner.url" class="">
                                 <div class="banner_image" v-bind:style="{ backgroundImage: 'url(' + banner.image_url + ')' }"></div>
-                                <!--<div class="banner_image" v-bind:style="{ backgroundImage: 'url(http://placehold.it/1920x500)' }"></div>-->
                             </a>
                             <div v-else class="banner_image" v-bind:style="{ backgroundImage: 'url(' + banner.image_url + ')' }"></div>
-                            <!--<div v-else class="banner_image" v-bind:style="{ backgroundImage: 'url(http://placehold.it/1920x500)' }"></div>-->
                         </div>
                     </slick>
                 </div>
                 <div class="main_container">
                     <div class="welcome_message">
-                        <p v-if="property.description.length > 0"> {{property.description}}</p>
+                        <p v-if="property.description.length > 0">{{property.description}}</p>
                     </div>
                 </div>
                 <div class="main_container">
                     <div v-if="featureItems" class="row">
                         <div v-for="item in featureItems" class="col-sm-4 feature_item">
                             <div class="feature_image_container">
-                                <img :src="item.image_url" :alt="item.name" />
+                                <a :href="item.url">
+                                    <img :src="item.image_url" :alt="item.name" />
+                                </a>
                             </div>
                         </div>
                     </div>
