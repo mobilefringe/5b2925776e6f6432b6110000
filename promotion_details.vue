@@ -5,7 +5,7 @@
             <div v-if="dataLoaded" v-cloak>
                 <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
                     <div class="main_container">
-                        <h2>Events</h2>
+                        <h2>Promotions</h2>
                     </div>
                 </div>
                 <div class="main_container margin_30">
@@ -61,6 +61,15 @@
                 }
             },
             created() {
+				var temp_repo = this.findRepoByName('Promotions Banner').images;
+                if(temp_repo != null) {
+                    this.pageBanner = temp_repo[0];
+                } else {
+                    this.pageBanner = {
+                        "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                    }
+                }
+				
 				this.$store.dispatch("getData", "promotions").then(response => {
 					this.currentPromo = this.findPromoBySlug(this.id);
 					if (this.currentPromo === null || this.currentPromo === undefined) {
