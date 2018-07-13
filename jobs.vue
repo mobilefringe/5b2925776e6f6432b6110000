@@ -11,7 +11,7 @@
                 <div class="main_container mobile_padding margin_30">
                     <div class="details_row">
                         <div class="details_col_3 hidden_phone">
-                            <img class="img_max" src="http://placehold.it/440x1200" alt="" />    
+                            <img class="img_max" src="//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/jpeg/1531500168000/sidebanner10.jpg" alt="" />    
                         </div>
                         <div class="details_col_9">
                             <!-- JOB -->
@@ -101,7 +101,6 @@ define(["Vue", "vuex", "moment", "moment-timezone", "vue-moment", "bootstrap-vue
                     'processedJobs'
                 ]),
                 jobList: function jobs() {
-                    console.log(this.processedJobs)
                     var jobs = this.processedJobs;
                     var showJobs = [];
                     _.forEach(jobs, function (value, key) {
