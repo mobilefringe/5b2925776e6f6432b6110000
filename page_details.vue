@@ -78,7 +78,17 @@
                             if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
                                 _this.leasingImages = repo_data.images;
                             }
+                        } else {
+                            var temp_repo = this.findRepoByName('Inside Page Banner').images;
+                            if(temp_repo != null) {
+                                this.pageBanner = temp_repo[0];
+                            } else {
+                                this.pageBanner = {
+                                    "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                                }
+                            }    
                         }
+                        
                         _this.dataLoaded = true;
                     }, function (error) {
                         console.error( "Could not retrieve data from server. Please check internet connection and try again.");
