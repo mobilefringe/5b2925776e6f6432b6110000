@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="main_container mobile_padding margin_30">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <h3 class="hours_heading caps">Hours</h3>
                         <div class="hours_container">
                             <div class="row hours_div" v-for="hour in hours">
@@ -23,6 +23,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="padding_top_20"></div>
                         <h3 class="hours_heading caps">We will be open the following Holidays</h3>
                         <div class="hours_container">
