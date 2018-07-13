@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <div class="site_logo center-block">
                         <a href="/">
-                            <img :alt="siteInfo.siteName" src="//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1529610078405/GSlogo-1.png">
+                            <img :alt="siteInfo.siteName" src="//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531493329000/GSLogoSmall.png">
                         </a>
                     </div>
                     <div @click="showMenu = !showMenu" :class="{ open: showMenu }" id="menu-icon">
