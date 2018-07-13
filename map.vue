@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
                     <div class="main_container">
                         <div class="page_container">
                             <h2>Center Map</h2>
@@ -47,10 +47,20 @@
             data: function() {
                 return {
                     dataLoaded: false,
+                    pageBanner: null
                 }
             },
             created (){
                 this.loadData().then(response => {
+                    var temp_repo = this.findRepoByName('Directory Banner').images;
+                    if(temp_repo != null) {
+                        this.pageBanner = temp_repo[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2d4b7e6e6f647f1dfc0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                        }
+                    }
+                    
                     this.dataLoaded = true;
                 });
             },
