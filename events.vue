@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
                     <div class="main_container">
                         <h2>Events</h2>
                     </div>
@@ -78,12 +78,22 @@
             data: function () {
                 return {
                     dataLoaded: false,
+                    pageBanner: null,
                     toggleEvents: false,
-                    togglePromos: false
+                    // togglePromos: false
                 }
             },
             created (){
                 this.loadData().then(response => {
+                    var temp_repo = this.findRepoByName('Events Banner').images;
+                    if(temp_repo != null) {
+                        this.pageBanner = temp_repo[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                        }
+                    }
+                    
                     this.dataLoaded = true;
                 });
             },
@@ -91,8 +101,9 @@
                 ...Vuex.mapGetters([
                     'property',
                     'timezone',
+                    'findRepoByName',
                     'processedEvents',
-                    'processedPromos'
+                    // 'processedPromos'
                 ]),
                 eventList: function events() {
                     var events = this.processedEvents;
@@ -119,39 +130,38 @@
                         this.toggleEvents = true;
                     }
                     return sortedEvents
-                    
                 },
-                promoList: function promos() {
-                    var vm = this;
-                    var showPromos = [];
-                    _.forEach(this.processedPromos, function(value, key) {
-                        var today = moment.tz(this.timezone).format();
-                        var showOnWebDate = moment.tz(value.show_on_web_date, this.timezone).format();
-                        if (today >= showOnWebDate) {
-                            if (value.store != null && value.store != undefined && _.includes(value.store.image_url, 'missing')) {
-                                value.store.image_url = "http://placehold.it/400x400";
-                            }
+                // promoList: function promos() {
+                //     var vm = this;
+                //     var showPromos = [];
+                //     _.forEach(this.processedPromos, function(value, key) {
+                //         var today = moment.tz(this.timezone).format();
+                //         var showOnWebDate = moment.tz(value.show_on_web_date, this.timezone).format();
+                //         if (today >= showOnWebDate) {
+                //             if (value.store != null && value.store != undefined && _.includes(value.store.image_url, 'missing')) {
+                //                 value.store.image_url = "http://placehold.it/400x400";
+                //             }
                             
-                            if (_.includes(value.image_url, 'missing')) {
-                                value.image_url = "http://placehold.it/400x400";
-                            }
+                //             if (_.includes(value.image_url, 'missing')) {
+                //                 value.image_url = "http://placehold.it/400x400";
+                //             }
                             
-                            value.description_short = _.truncate(value.description, { 'length': 100, 'separator': ' ' });
+                //             value.description_short = _.truncate(value.description, { 'length': 100, 'separator': ' ' });
                             
-                            showPromos.push(value);
-                        }
-                    });
-                    var sortedPromos = _.orderBy(showPromos, [function(o) { return o.end_date; }]);
-                    if (sortedPromos.length > 0) {
-                        this.togglePromos = true;
-                    }
-                    return sortedPromos;
-                }
+                //             showPromos.push(value);
+                //         }
+                //     });
+                //     var sortedPromos = _.orderBy(showPromos, [function(o) { return o.end_date; }]);
+                //     if (sortedPromos.length > 0) {
+                //         this.togglePromos = true;
+                //     }
+                //     return sortedPromos;
+                // }
             },
             methods: {
                 loadData: async function () {
                     try {
-                        let results = await Promise.all([this.$store.dispatch("getData", "events"), this.$store.dispatch("getData","promotions")]);
+                        let results = await Promise.all([this.$store.dispatch("getData", "events")]);
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
                     }
