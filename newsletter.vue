@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
                     <div class="main_container">
                         <div class="page_container">
                             <h2>Newsletter</h2>
@@ -63,11 +63,23 @@
             data: function() {
                 return {
                     dataLoaded: true,
+                    pageBanner: null,
                     siteInfo: site,
                     form_data : {},
                     formSuccess : false,
                     formError: false
                 }
+            },
+            created() {
+                var temp_repo = this.findRepoByName('Newsletter Banner').images;
+                if(temp_repo != null) {
+                    this.pageBanner = temp_repo[0];
+                } else {
+                    this.pageBanner = {
+                        "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                    }
+                }
+                this.updateCurrentPage(this.id);
             },
             mounted () {
                 this.form_data.email = this.$route.query.email;
