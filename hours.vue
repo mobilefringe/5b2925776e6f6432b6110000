@@ -29,8 +29,11 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="padding_top_20"></div>
-                        <h3 class="hours_heading caps">We will be open the following Holidays</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="hours_heading caps">We will be open the following Holidays</h3>
+                            </div>
+                        </div>
                         <div class="hours_container">
                             <div class="row hours_div"  v-for="hour in reducedHolidays">
                                 <div class="col-xs-6 col-sm-4 col-md-6">
@@ -41,8 +44,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="padding_top_20"></div>
-                        <h3 class="hours_heading caps">We will be closed the following Statutory Holidays</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="hours_heading caps">We will be closed the following Statutory Holidays</h3>
+                            </div>
+                        </div>
                         <div class="hours_container">
                             <div class="row hours_div" v-for="hour in closeHolidays">
                                 <div class="col-sm-6 col-sm-4 col-md-6">
