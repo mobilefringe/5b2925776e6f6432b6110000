@@ -38,7 +38,6 @@
                                         <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>CLOSED
                                     </div>
                                 </li>
-                                
                             </ul>
                             <div class=" margin_30 store_details_desc" v-html="currentStore.rich_description"></div>
                             <div v-if="this.currentStore.promotions">
@@ -114,7 +113,7 @@
         Vue.use(BootstrapVue);
         return Vue.component("store-details-component", {
             template: template, // the variable template will be injected,
-            props: ['id','inside_banner'],
+            props: ['id'],
             data: function () {
                 return {
                     dataLoaded: false,
@@ -127,7 +126,6 @@
                     map: null
                 }
             },
-            props:['id'],
             created (){
                 this.loadData().then(response => {
                     var temp_repo = this.findRepoByName('Directory Banner').images;
