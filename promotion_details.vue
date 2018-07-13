@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + inside_banner.image_url + ')' }">
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
                     <div class="main_container">
                         <h2>Promotions</h2>
                     </div>
@@ -52,10 +52,11 @@
         Vue.component('social-sharing', SocialSharing);
         return Vue.component("promo-details-component", {
             template: template, // the variable template will be injected,
-            props: ['id','inside_banner'],
+            props: ['id'],
             data: function() {
                 return {
                     dataLoaded: false,
+                    pageBanner: null,
                     currentPromo: null,
                     siteInfo: site
                 }
@@ -84,6 +85,7 @@
                 ...Vuex.mapGetters([
                     'property',
                     'timezone',
+                    'findRepoByName',
                     'findPromoBySlug'
                 ])
             },
