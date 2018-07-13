@@ -45,7 +45,6 @@
                 }
             },
             created() {
-                
                 this.updateCurrentPage(this.id);
             },
             watch: {
