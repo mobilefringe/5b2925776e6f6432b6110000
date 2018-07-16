@@ -37,13 +37,13 @@
         						</div>
         						<div class="form-group">
         						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('phone')}">
-    									<label for="phone">Telephone Number<span class="req_star"> *</span></label>
-    									<input v-model="form_data.phone" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phone" type="text" data-vv-delay="500" data-vv-as="Telephone Number">
+    									<label for="phone">Contact Phone Number<span class="req_star"> *</span></label>
+    									<input v-model="form_data.phone" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phone" type="text" data-vv-delay="500" data-vv-as="Contact Phone Number">
     									<span v-show="errors.has('phone')" class="form-control-feedback">{{ errors.first('phone') }}</span>
     								</div>
         							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('email')}">
-        								<label for="email">Email<span class="req_star"> *</span></label>
-        								<input v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" data-vv-delay="500" data-vv-as="Email">
+        								<label for="email">Contact Email Address<span class="req_star"> *</span></label>
+        								<input v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" data-vv-delay="500" data-vv-as="Contact Email Address">
         								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
         							</div>
         						</div>
