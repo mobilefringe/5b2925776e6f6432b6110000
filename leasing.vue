@@ -73,10 +73,9 @@
                         console.log(leasing_docs)
                         _.forEach(leasing_docs, function(value, key) {
                             console.log(value)
-                            if (value.id == 41067) {
                                 this.leasingPlans = value.image_url;
                             }   
-                            if (value.id == 41068) {
+                            if (value.id = 41068) {
                                 this.leasingDemos = value.image_url;
                             }
                         });
