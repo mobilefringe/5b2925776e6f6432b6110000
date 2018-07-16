@@ -9,11 +9,8 @@
                     </div>
                 </div>
                 <div class="main_container mobile_padding margin_30">
-                    <div class="details_row">
-                        <div class="details_col_3 hidden_phone">
-                            <img class="img_max" src="//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/jpeg/1531500156000/sidebanner4.jpg" alt="" />    
-                        </div>
-                        <div class="details_col_9">
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="margin_40">
                                 <h3>Permanent Leasing</h3>
                                 <hr>
@@ -90,7 +87,7 @@
             					</div>
             				</div>
             				<div>
-            				    <h3>Temporary Leasing</h3>
+            				    <h3>Specialty Leasing</h3>
                                 <hr>
                                 <div class="margin_40 page_body" v-if="tempLeasing" v-html="tempLeasing.body"></div>
             				</div>
