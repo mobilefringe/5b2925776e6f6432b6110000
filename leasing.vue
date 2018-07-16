@@ -127,6 +127,7 @@
                         }
                     }
                     
+                    console.log("Response ", response);
                     this.dataLoaded = true;
                 });
             },
