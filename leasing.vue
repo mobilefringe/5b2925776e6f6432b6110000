@@ -16,34 +16,34 @@
                                 <div class="margin_40 page_body" v-if="permLeasing" v-html="permLeasing.body"></div>
             					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmitPerm">
             						<div class="form-group ">
-            							<div class="col-xs-12 margin_20" :class="{'has-error': errors.has('legalName')}">
+            							<div class="col-xs-12 margin_20" :class="{'has-error': errorsPerm.has('legalName')}">
             								<label for="legalName">Legal Name of Organization<span class="req_star"> *</span></label>
             								<input v-model="form_data.legalName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="legalName" type="text" data-vv-delay="500" data-vv-as="Legal Name of Organization">
-            								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
+            								<span v-show="errorsPerm.has('legalName')" class="form-control-feedback">{{ errorsPerm.first('legalName') }}</span>
             							</div>
             						</div>
             						<div class="form-group">
-            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('firstName')}">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsPerm.has('firstName')}">
             							    <label for="firstName">Contact First Name<span class="req_star"> *</span></label>
             								<input v-model="form_data.firstName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="firstName" type="text" data-vv-delay="500" data-vv-as="Contact First Name">
-            								<span v-show="errors.has('firstName')" class="form-control-feedback">{{ errors.first('firstName') }}</span>
+            								<span v-show="errorsPerm.has('firstName')" class="form-control-feedback">{{ errorsPerm.first('firstName') }}</span>
             							</div>
-            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('lastName')}">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsPerm.has('lastName')}">
             							    <label for="lastName">Contact Last Name<span class="req_star"> *</span></label>
             								<input v-model="form_data.lastName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="lastName" type="text" data-vv-delay="500" data-vv-as="Contact Last Name">
-            								<span v-show="errors.has('lastName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
+            								<span v-show="errorsPerm.has('lastName')" class="form-control-feedback">{{ errorsPerm.first('legalName') }}</span>
             							</div>
             						</div>
             						<div class="form-group">
-            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('phone')}">
+            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsPerm.has('phone')}">
         									<label for="phone">Contact Phone Number<span class="req_star"> *</span></label>
         									<input v-model="form_data.phone" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phone" type="text" data-vv-delay="500" data-vv-as="Contact Phone Number">
-        									<span v-show="errors.has('phone')" class="form-control-feedback">{{ errors.first('phone') }}</span>
+        									<span v-show="errorsPerm.has('phone')" class="form-control-feedback">{{ errorsPerm.first('phone') }}</span>
         								</div>
-            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('email')}">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsPerm.has('email')}">
             								<label for="email">Contact Email Address<span class="req_star"> *</span></label>
             								<input v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" data-vv-delay="500" data-vv-as="Contact Email Address">
-            								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
+            								<span v-show="errorsPerm.has('email')" class="form-control-feedback">{{ errorsPerm.first('email') }}</span>
             							</div>
             						</div>
         							<div class="form-group">
@@ -95,46 +95,46 @@
                                 <div class="margin_40 page_body" v-if="tempLeasing" v-html="tempLeasing.body"></div>
                                 <form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmitTemp">
             						<div class="form-group ">
-            							<div class="col-xs-12 margin_20" :class="{'has-error': errors.has('legalNameTemp')}">
+            							<div class="col-xs-12 margin_20" :class="{'has-error': errorsTemp.has('legalNameTemp')}">
             								<label for="legalNameTemp">Legal Name of Organization<span class="req_star"> *</span></label>
             								<input v-model="form_data.legalNameTemp" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="legalNameTemp" type="text" data-vv-delay="500" data-vv-as="Legal Name of Organization">
-            								<span v-show="errors.has('legalNameTemp')" class="form-control-feedback">{{ errors.first('legalNameTemp') }}</span>
+            								<span v-show="errorsTemp.has('legalNameTemp')" class="form-control-feedback">{{ errorsTemp.first('legalNameTemp') }}</span>
             							</div>
             						</div>
             						<div class="form-group">
-            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('firstNameTemp')}">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsTemp.has('firstNameTemp')}">
             							    <label for="firstNameTemp">Contact First Name<span class="req_star"> *</span></label>
             								<input v-model="form_data.firstNameTemp" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="firstNameTemp" type="text" data-vv-delay="500" data-vv-as="Contact First Name">
-            								<span v-show="errors.has('firstNameTemp')" class="form-control-feedback">{{ errors.first('firstNameTemp') }}</span>
+            								<span v-show="errorsTemp.has('firstNameTemp')" class="form-control-feedback">{{ errorsTemp.first('firstNameTemp') }}</span>
             							</div>
-            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('lastNameTemp')}">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsTemp.has('lastNameTemp')}">
             							    <label for="lastNameTemp">Contact Last Name<span class="req_star"> *</span></label>
             								<input v-model="form_data.lastNameTemp" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="lastNameTemp" type="text" data-vv-delay="500" data-vv-as="Contact Last Name">
-            								<span v-show="errors.has('lastNameTemp')" class="form-control-feedback">{{ errors.first('lastNameTemp') }}</span>
+            								<span v-show="errorsTemp.has('lastNameTemp')" class="form-control-feedback">{{ errorsTemp.first('lastNameTemp') }}</span>
             							</div>
             						</div>
             						<div class="form-group">
-            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('phoneTemp')}">
+            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsTemp.has('phoneTemp')}">
         									<label for="phoneTemp">Contact Phone Number<span class="req_star"> *</span></label>
         									<input v-model="form_data.phoneTemp" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phoneTemp" type="text" data-vv-delay="500" data-vv-as="Contact Phone Number">
-        									<span v-show="errors.has('phoneTemp')" class="form-control-feedback">{{ errors.first('phoneTemp') }}</span>
+        									<span v-show="errorsTemp.has('phoneTemp')" class="form-control-feedback">{{ errorsTemp.first('phoneTemp') }}</span>
         								</div>
-            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('emailTemp')}">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsTemp.has('emailTemp')}">
             								<label for="emailTemp">Contact Email Address<span class="req_star"> *</span></label>
             								<input v-model="form_data.emailTemp" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="emailTemp" type="email" data-vv-delay="500" data-vv-as="Contact Email Address">
-            								<span v-show="errors.has('emailTemp')" class="form-control-feedback">{{ errors.first('emailTemp') }}</span>
+            								<span v-show="errorsTemp.has('emailTemp')" class="form-control-feedback">{{ errorsTemp.first('emailTemp') }}</span>
             							</div>
             						</div>
             						<div class="form-group">
-            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('dates')}">
+            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsTemp.has('dates')}">
         									<label for="dates">Requested Dates <span class="req_star"> *</span></label>
         									<input v-model="form_data.dates" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="dates" type="text" data-vv-delay="500" data-vv-as="Requested Dates">
-        									<span v-show="errors.has('dates')" class="form-control-feedback">{{ errors.first('dates') }}</span>
+        									<span v-show="errorsTemp.has('dates')" class="form-control-feedback">{{ errorsTemp.first('dates') }}</span>
         								</div>
-            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('location')}">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errorsTemp.has('location')}">
             								<label for="location">Requested Location<span class="req_star"> *</span></label>
             								<input v-model="form_data.location" v-validate="'required|location'" class="form-control" :class="{'input': true}" name="location" type="text" data-vv-delay="500" data-vv-as="Requested Location">
-            								<span v-show="errors.has('location')" class="form-control-feedback">{{ errors.first('location') }}</span>
+            								<span v-show="errorsTemp.has('location')" class="form-control-feedback">{{ errorsTemp.first('location') }}</span>
             							</div>
             						</div>
             						<div class="form-group">
@@ -225,7 +225,7 @@
                     this.validNumError = false;
                     this.$validator.validateAll().then((result) => {
                         if (result) {
-                            let errors = this.errors;
+                            let errors = this.errorsPerm;
                             //format email
                             send_data = {};
                             send_data.url = "https://www.mallmaverick.com/send_contact_email";
@@ -264,7 +264,7 @@
                     this.validNumError = false;
                     this.$validator.validateAll().then((result) => {
                         if (result) {
-                            let errors = this.errors;
+                            let errors = this.errorsTemp;
                             //format email
                             send_data = {};
                             send_data.url = "https://www.mallmaverick.com/send_contact_email";
