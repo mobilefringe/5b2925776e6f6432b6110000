@@ -52,7 +52,7 @@
     									<label for="size">Square Footage Required</label>
     									<!--<input v-model="form_data.size" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="size" type="text" data-vv-delay="500" data-vv-as="Square Footage Required">-->
     									<!--<span v-show="errors.has('size')" class="form-control-feedback">{{ errors.first('size') }}</span>-->
-    									<select id="size" v-model="form_data.size">
+    									<select id="size" v-model="form_data.size" class="form-control">
                                             <option value="">Select square footage</option>
                                             <option value="hurr">Less than 500 sq.ft.</option>
                                             <option value="hurr">500 - 1000 sq. ft.</option>
@@ -64,7 +64,7 @@
         						<div class="form-group">
         						    <div class="col-xs-12" :class="{'has-error': errors.has('size')}">
     									<label for="comments">Comments</label>
-    									<textarea></textarea>
+    									<textarea class="form-control"></textarea>
     								</div>
     							</div>
         						<div class="form-group">
