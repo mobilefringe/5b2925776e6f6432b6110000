@@ -12,8 +12,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="margin_40">
-                                <h3>Permanent Leasing</h3>
-                                <hr>
+                                <h3 class="inside_page_header">Permanent Leasing</h3>
                                 <div class="margin_40 page_body" v-if="permLeasing" v-html="permLeasing.body"></div>
             					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmit">
             						<div class="form-group ">
@@ -87,8 +86,7 @@
             					</div>
             				</div>
             				<div>
-            				    <h3>Specialty Leasing</h3>
-                                <hr>
+            				    <h3 class="inside_page_header">Specialty Leasing</h3>
                                 <div class="margin_40 page_body" v-if="tempLeasing" v-html="tempLeasing.body"></div>
             				</div>
         				</div>
