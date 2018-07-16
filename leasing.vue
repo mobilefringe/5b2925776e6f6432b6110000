@@ -10,7 +10,7 @@
                 </div>
                 <div class="main_container mobile_padding margin_30">
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2 ">
+                        <div class="col-md-12">
                             <div class="page_body" v-html="currentPage.body"></div>
                             <div v-if="leasingImages" class="leasing_images">
                                 <div v-for="image in leasingImages" class="col-md-2 leasing_photo_container">
