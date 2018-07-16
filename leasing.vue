@@ -47,10 +47,8 @@
             							</div>
             						</div>
         							<div class="form-group">
-            						    <div class="col-xs-12 margin_20" :class="{'has-error': errors.has('size')}">
+            						    <div class="col-xs-12 margin_20">
         									<label for="size">Square Footage Required</label>
-        									<!--<input v-model="form_data.size" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="size" type="text" data-vv-delay="500" data-vv-as="Square Footage Required">-->
-        									<!--<span v-show="errors.has('size')" class="form-control-feedback">{{ errors.first('size') }}</span>-->
         									<select id="size" v-model="form_data.size" class="form-control">
                                                 <option value="">Select square footage</option>
                                                 <option value="Less than 500 sq.ft.">Less than 500 sq.ft.</option>
@@ -61,9 +59,9 @@
         								</div>
             						</div>
             						<div class="form-group">
-            						    <div class="col-xs-12" :class="{'has-error': errors.has('size')}">
+            						    <div class="col-xs-12">
         									<label for="comments">Comments</label>
-        									<textarea class="form-control"></textarea>
+        									<textarea id="comments" class="form-control" v-model="form_data.comments"></textarea>
         								</div>
         							</div>
             						<div class="form-group">
@@ -166,47 +164,39 @@
                 validateBeforeSubmit() {
                     this.validNumError = false;
                     this.$validator.validateAll().then((result) => {
-                        if (result && (this.correctValNum === this.validaNum)) {
+                        if (result) {
                             let errors = this.errors;
                             //format email
                             send_data = {};
                             send_data.url = "https://www.mallmaverick.com/send_contact_email";
-                            var formatted_formdata = {}; //JSON.stringify(this.serializeObject(this.form_data));
-                            formatted_formdata.send_to = "caitlin@mobilefringe.com";
-                            formatted_formdata.subject = "Milton Mall Community Rental Form Application"; 
-                            formatted_formdata.body = {};
-                            formatted_formdata.body["Legal Name of Organization"] =  this.form_data.legalName;
-                            formatted_formdata.body["Operating Name of Organization(if different)"] =  this.form_data.operatingName, 
-                            formatted_formdata.body["Description of Organization"] =   this.form_data.description, 
-                            formatted_formdata.body["Street Address"] = this.form_data.street,
-                            formatted_formdata.body["Town/City"] = this.form_data.city, 
-                            formatted_formdata.body["Postal Code" ] =  this.form_data.postal, 
-                            formatted_formdata.body["Email Address"] = this.form_data.email, 
-                            formatted_formdata.body["Telephone Number"] =  this.form_data.phone, 
-                            formatted_formdata.body["Fax Number"] =  this.form_data.fax,
-                            formatted_formdata.body["Authorized Contact Person"] = this.form_data.contactName,
-                            formatted_formdata.body["Name of Insurer"] =  this.form_data.insurer,
-                            formatted_formdata.body["Charitable # (BN/Registration Number)"] =  this.form_data.cnpNum,
-                            formatted_formdata.body["Lottery License # (If applicable)"] =   this.form_data.lLicense,
-                            formatted_formdata.body["From Date(mm/dd/yyyy)"] =  this.form_data.fromDate,
-                            formatted_formdata.body["To Date(mm/dd/yyyy)"] =  this.form_data.toDate,
-                            formatted_formdata.body["Purpose for use of in-mall space"] =  this.form_data.purpose,
-                            formatted_formdata.body["Please specify any other requirements"] =  this.form_data.requirement,
-                            formatted_formdata.body[ "Anticipated Attendance"] =  this.form_data.aAttendance;
+                            var perm_formdata = {}; //JSON.stringify(this.serializeObject(this.form_data));
+                            perm_formdata.send_to = "caitlin@mobilefringe.com";
+                            perm_formdata.subject = "Gerrard Square Permanent Leasing Form"; 
+                            perm_formdata.body = {};
+                            perm_formdata.body["Legal Name of Organization"] =  this.form_data.legalName;
+                             
+                            perm_formdata.body["Contact First Name"] =   this.form_data.firstName, 
+                            perm_formdata.body["Contact Last Name"] = this.form_data.lastName,
+                            perm_formdata.body["Contact Phone Number"] = this.form_data.phone, 
+                            perm_formdata.body["Contact Email Address" ] =  this.form_data.email, 
+                            perm_formdata.body["Square Footage Required"] =  this.form_data.size, 
+                            perm_formdata.body["Comments"] =  this.form_data.comments,
+                            
                             send_data.form_data = Utility.serializeObject(formatted_formdata);
-                            var vm = this;
-                            $.ajax({
-                                url : send_data.url,
-                                type: "POST",
-                                data : formatted_formdata,
-                                success: function(data, textStatus, jqXHR){
-                                    vm.formSuccess = true;
-                                },
-                                error: function (jqXHR, textStatus, errorThrown){
-                                   console.log("Data load error: " + error.message);
-                                   vm.formError = true;
-                                }
-                            });
+                            console.log(send_data.form_data)
+                            // var vm = this;
+                            // $.ajax({
+                            //     url : send_data.url,
+                            //     type: "POST",
+                            //     data : formatted_formdata,
+                            //     success: function(data, textStatus, jqXHR){
+                            //         vm.formSuccess = true;
+                            //     },
+                            //     error: function (jqXHR, textStatus, errorThrown){
+                            //       console.log("Data load error: " + error.message);
+                            //       vm.formError = true;
+                            //     }
+                            // });
                         }
                     })
                 }
