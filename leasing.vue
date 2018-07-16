@@ -24,15 +24,15 @@
         							</div>
         						</div>
         						<div class="form-group">
-        							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('first_name')}">
+        							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('firstName')}">
         							    <label for="firstName">Contact First Name<span class="req_star"> *</span></label>
         								<input v-model="form_data.firstName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="firstName" type="text" data-vv-delay="500" data-vv-as="Contact First Name">
         								<span v-show="errors.has('firstName')" class="form-control-feedback">{{ errors.first('firstName') }}</span>
         							</div>
-        							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('last_name')}">
+        							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('lastName')}">
         							    <label for="lastName">Contact Last Name<span class="req_star"> *</span></label>
         								<input v-model="form_data.lastName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="lastName" type="text" data-vv-delay="500" data-vv-as="Contact Last Name">
-        								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
+        								<span v-show="errors.has('lastName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
         							</div>
         						</div>
         						<div class="form-group">
