@@ -62,6 +62,12 @@
     								</div>
         						</div>
         						<div class="form-group">
+        						    <div class="col-xs-12" :class="{'has-error': errors.has('size')}">
+    									<label for="size">Square Footage Required</label>
+    									
+    								</div>
+    							</div>
+        						<div class="form-group">
         							<div class="col-xs-12">
         								<button class="fill_btn" type="submit" :disabled="formSuccess">
         								    Submit <i class="fa fa-angle-right" aria-hidden="true"></i>
