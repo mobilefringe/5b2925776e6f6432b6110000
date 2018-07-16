@@ -63,8 +63,8 @@
         						</div>
         						<div class="form-group">
         						    <div class="col-xs-12" :class="{'has-error': errors.has('size')}">
-    									<label for="size">Square Footage Required</label>
-    									
+    									<label for="comments">Comments</label>
+    									<textarea></textarea>
     								</div>
     							</div>
         						<div class="form-group">
