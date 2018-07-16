@@ -70,7 +70,7 @@
                     
                     var leasing_docs = this.findRepoByName('Leasing Documents').images;
                     if (leasing_docs != null) {
-                        console.log(leasing_repo)
+                        console.log(leasing_docs)
                         _.forEach(leasing_docs, function(value, key) {
                             if (value.id == 41067) {
                                 this.leasingPlans = value.image_url;
