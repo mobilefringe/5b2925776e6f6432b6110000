@@ -16,14 +16,14 @@
                     </div>
                     <div class="row margin_20">
                         <div class="col-md-6">
-                            <div class="pull-left">
+                            <div class="">
                                 <a href="" target="_blank">
                                     <div class="animated_btn">Download Leasing Plan</div>
                                 </a>    
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="pull-right">
+                            <div class="">
                                 <a href="" target="_blank">
                                     <div class="animated_btn">Download Trade Area Demographics</div>
                                 </a>    
