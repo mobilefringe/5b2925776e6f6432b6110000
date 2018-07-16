@@ -283,19 +283,19 @@
                             
                             send_data.form_data = Utility.serializeObject(temp_formdata);
                             console.log("Data ", send_data.form_data)
-                            var vm = this;
-                            $.ajax({
-                                url : send_data.url,
-                                type: "POST",
-                                data : temp_formdata,
-                                success: function(data, textStatus, jqXHR){
-                                    vm.formSuccess = true;
-                                },
-                                error: function (jqXHR, textStatus, errorThrown){
-                                  console.log("Data load error: " + error.message);
-                                  vm.formError = true;
-                                }
-                            });
+                            // var vm = this;
+                            // $.ajax({
+                            //     url : send_data.url,
+                            //     type: "POST",
+                            //     data : temp_formdata,
+                            //     success: function(data, textStatus, jqXHR){
+                            //         vm.formSuccess = true;
+                            //     },
+                            //     error: function (jqXHR, textStatus, errorThrown){
+                            //       console.log("Data load error: " + error.message);
+                            //       vm.formError = true;
+                            //     }
+                            // });
                         }
                     })
                 }
