@@ -35,7 +35,6 @@
         								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
         							</div>
         						</div>
-        						
         						<div class="form-group">
         						    <div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('phone')}">
     									<label for="phone">Telephone Number<span class="req_star"> *</span></label>
@@ -48,7 +47,14 @@
         								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
         							</div>
         						</div>
-    							
+    							<div class="form-group">
+        						    <div class="col-xs-12" :class="{'has-error': errors.has('size')}">
+    									<label for="size">Square Footage Required</label>
+    									<input v-model="form_data.size" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="size" type="text" data-vv-delay="500" data-vv-as="Square Footage Required">
+    									<span v-show="errors.has('size')" class="form-control-feedback">{{ errors.first('size') }}</span>
+    								</div>
+        							
+        						</div>
         						<div class="form-group">
         							<div class="col-xs-12">
         								<button class="fill_btn" type="submit" :disabled="formSuccess">
