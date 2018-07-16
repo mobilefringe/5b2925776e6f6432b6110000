@@ -189,7 +189,7 @@
             },
             mounted() {
                 //creating random validation num 
-                this.correctValNum = Utility.rannumber();//this.rannumber;
+                // this.correctValNum = Utility.rannumber();//this.rannumber;
             },
             computed: {
                 ...Vuex.mapGetters([
