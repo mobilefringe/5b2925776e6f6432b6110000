@@ -16,18 +16,23 @@
                         <div class="details_col_9">
 
         					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmit">
-    							<h3 class="hours_heading caps">Business Contact Info</h3>
-    							<hr>
         						<div class="form-group ">
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('legalName')}">
+        							<div class="col-xs-12" :class="{'has-error': errors.has('legalName')}">
         								<label for="legalName">Legal Name of Organization<span class="req_star"> *</span></label>
         								<input v-model="form_data.legalName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="legalName" type="text" placeholder="Legal Name of Organization" data-vv-delay="500" data-vv-as="Legal Name of Organization">
         								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
         							</div>
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('operatingName')}">
-        								<label for="operatingName">Operating Name of Organization(if different)</label>
-        								<input v-model="form_data.operatingName" class="form-control" :class="{'input': true}" name="operatingName" type="text" placeholder="Operating Name of Organization" data-vv-delay="500">
-        								<span v-show="errors.has('operatingName')" class="form-control-feedback">{{ errors.first('operatingName') }}</span>
+        						</div>
+        						<div class="form-group">
+        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('first_name')}">
+        							    <label for="firstName">Contact First Name<span class="req_star"> *</span></label>
+        								<input v-model="form_data.firstName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="firstName" type="text" data-vv-delay="500" data-vv-as="Contact First Name">
+        								<span v-show="errors.has('firstName')" class="form-control-feedback">{{ errors.first('firstName') }}</span>
+        							</div>
+        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('last_name')}">
+        							    <label for="lastName">Contact Last Name<span class="req_star"> *</span></label>
+        								<input v-model="form_data.lastName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="lastName" type="text" data-vv-delay="500" data-vv-as="Contact Last Name">
+        								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
         							</div>
         						</div>
         						<div class="form-group">
@@ -77,67 +82,7 @@
             							</div>
         							</div>
         						</div>
-    							<h3 class="hours_heading caps">Contact Info</h3>
-    							<hr>
-        						<div class="form-group ">
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('contactName')}">
-        								<label for="contactName">Authorized Contact Person<span class="req_star"> *</span></label>
-        								<input v-model="form_data.contactName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="contactName" type="text" placeholder="Contact Person" data-vv-delay="500" data-vv-as="Authorized Contact Person">
-        								<span v-show="errors.has('contactName')" class="form-control-feedback">{{ errors.first('contactName') }}</span>
-        							</div>
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('insurer')}">
-        								<label for="insurer">Name of Insurer<span class="req_star"> *</span></label>
-        								<input v-model="form_data.insurer"  v-validate="'required:true'" class="form-control" :class="{'input': true}" name="insurer" type="text" placeholder="Name of Insurer" data-vv-delay="500" data-vv-as="Name of Insurer">
-        								<span v-show="errors.has('insurer')" class="form-control-feedback">{{ errors.first('insurer') }}</span>
-        							</div>
-        						</div>
-        						<div class="form-group ">
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('cnpNum')}">
-        								<label for="cnpNum">Registered Charitable Number Not for Profit Number<span class="req_star"> *</span></label>
-        								<input v-model="form_data.cnpNum" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="cnpNum" type="text" placeholder="Charitable Number" data-vv-delay="500" data-vv-as="Registered charitable number">
-        								<span v-show="errors.has('cnpNum')" class="form-control-feedback">{{ errors.first('cnpNum') }}</span>
-        							</div>
-        							<div class="col-sm-6 col-xs-12" >
-        								<label for="lLicense">Lottery License #</label>
-        								<input v-model="form_data.lLicense" class="form-control" :class="{'input': true}" name="lLicense" type="text" placeholder="Lottery License #" data-vv-delay="500">
-        							</div>
-        						</div>
-        						<div class="form-group ">
-        							<div class="col-sm-3 col-xs-12" :class="{'has-error': errors.has('fromDate')}">
-        								<label for="fromDate">From Date<span class="req_star"> *</span></label>
-        								<input v-model="form_data.fromDate" class="form-control" v-validate="'required|date_format:MM/DD/YYYY'" :class="{'input': true}" name="fromDate" type="text" placeholder="mm/dd/yyyy" data-vv-delay="500" data-vv-as="From date">
-        								<span v-show="errors.has('fromDate')" class="form-control-feedback">{{ errors.first('fromDate') }}</span>
-        							</div>
-        							<div class="col-sm-3 col-xs-12" :class="{'has-error': errors.has('toDate')}">
-        								<label for="toDate">To Date<span class="req_star"> *</span></label>
-        								<input v-model="form_data.toDate" class="form-control" v-validate="'required|date_format:MM/DD/YYYY'" :class="{'input': true}" name="toDate" type="text" placeholder="mm/dd/yyyy" data-vv-delay="500" data-vv-as="To date">
-        								<span v-show="errors.has('toDate')" class="form-control-feedback">{{ errors.first('toDate') }}</span>
-        							</div>
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('aAttendance')}">
-        								<label for="aAttendance"> Anticipated Attendance</label>
-        								<input v-model="form_data.aAttendance" class="form-control" :class="{'input': true}" name="aAttendance" type="text" placeholder="Anticipated Attendance" data-vv-delay="500">
-        								<span v-show="errors.has('aAttendance')" class="form-control-feedback">{{ errors.first('aAttendance') }}</span>
-        							</div>
-        						</div>
-        						<div class="form-group">
-        						    <div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('purpose')}">
-        								<label for="purpose">Purpose for use of in-mall space<span class="req_star"> *</span></label>
-        								<textarea v-model="form_data.purpose" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="purpose" type="text" placeholder="Purpose" data-vv-delay="500" rows="5" data-vv-as="purpose"></textarea>
-        								<span v-show="errors.has('purpose')" class="form-control-feedback">{{ errors.first('purpose') }}</span>
-        							</div>
-        							<div class="col-sm-6 col-xs-12">
-        								<label for="requirement">Please specify any other requirements</label>
-        								<textarea v-model="form_data.requirement" class="form-control" :class="{'input': true}" name="requirement" type="text" placeholder="Requirements" data-vv-delay="500" rows="5"></textarea>
-        							</div>
-        						</div>
-        						<div class="form-group">
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('validate')}">
-        								<label for="validate">Enter the following number below to proceed: {{correctValNum}}</label> 
-        								<input v-model="validaNum" v-validate="'required|numeric|min:6|max:6'" class="form-control col-xs-3" :class="{'input': true}" name="validate" type="text" placeholder="Enter above number" data-vv-delay="500">
-        								<span v-show="errors.has('validate')" class="form-control-feedback">{{ errors.first('validate') }}</span>
-        								<span v-if="validaNum.length === 6 && validaNum !== correctValNum && errors.first('validate') == null" class="form-control-feedback" :class="{shake_element : validNumError}">Please enter correct number</span>
-        							</div>
-        						</div>
+    							
         						<div class="form-group">
         							<div class="col-xs-12">
         								<button class="fill_btn" type="submit" :disabled="formSuccess">
