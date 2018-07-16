@@ -19,7 +19,7 @@
         						<div class="form-group ">
         							<div class="col-xs-12" :class="{'has-error': errors.has('legalName')}">
         								<label for="legalName">Legal Name of Organization<span class="req_star"> *</span></label>
-        								<input v-model="form_data.legalName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="legalName" type="text" placeholder="Legal Name of Organization" data-vv-delay="500" data-vv-as="Legal Name of Organization">
+        								<input v-model="form_data.legalName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="legalName" type="text" data-vv-delay="500" data-vv-as="Legal Name of Organization">
         								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
         							</div>
         						</div>
@@ -39,12 +39,12 @@
         						<div class="form-group">
         						    <div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('phone')}">
     									<label for="phone">Telephone Number<span class="req_star"> *</span></label>
-    									<input v-model="form_data.phone" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phone" type="text" placeholder="Phone number" data-vv-delay="500" data-vv-as="Telephone Number">
+    									<input v-model="form_data.phone" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phone" type="text" data-vv-delay="500" data-vv-as="Telephone Number">
     									<span v-show="errors.has('phone')" class="form-control-feedback">{{ errors.first('phone') }}</span>
     								</div>
         							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('email')}">
         								<label for="email">Email<span class="req_star"> *</span></label>
-        								<input v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" placeholder="Email" data-vv-delay="500">
+        								<input v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" data-vv-delay="500">
         								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
         							</div>
         						</div>
