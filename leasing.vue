@@ -24,7 +24,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="pull-right">
-                                
+                                <a href="" target="_blank">
+                                    <div class="animated_btn">Download Trade Area Demographics</div>
+                                </a>    
                             </div>
                         </div>
                     </div>
