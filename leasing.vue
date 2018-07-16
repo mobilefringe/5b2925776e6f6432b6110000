@@ -183,7 +183,7 @@
                             perm_formdata.body["Comments"] =  this.form_data.comments,
                             
                             send_data.form_data = Utility.serializeObject(perm_formdata);
-                            console.log(send_data.form_data)
+                            console.log("Data ", send_data.form_data)
                             // var vm = this;
                             // $.ajax({
                             //     url : send_data.url,
