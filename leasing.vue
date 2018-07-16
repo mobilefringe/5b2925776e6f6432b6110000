@@ -250,11 +250,11 @@
                                 type: "POST",
                                 data : perm_formdata,
                                 success: function(data, textStatus, jqXHR){
-                                    vm.formSuccess = true;
+                                    vm.formSuccessPerm = true;
                                 },
                                 error: function (jqXHR, textStatus, errorThrown){
                                   console.log("Data load error: " + error.message);
-                                  vm.formError = true;
+                                  vm.formErrorPerm = true;
                                 }
                             });
                         }
@@ -289,11 +289,11 @@
                             //     type: "POST",
                             //     data : temp_formdata,
                             //     success: function(data, textStatus, jqXHR){
-                            //         vm.formSuccess = true;
+                            //         vm.formSuccessTemp = true;
                             //     },
                             //     error: function (jqXHR, textStatus, errorThrown){
                             //       console.log("Data load error: " + error.message);
-                            //       vm.formError = true;
+                            //       vm.formErrorTemp = true;
                             //     }
                             // });
                         }
