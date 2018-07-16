@@ -125,22 +125,22 @@
             								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
             							</div>
             						</div>
-        							<div class="form-group">
-            						    <div class="col-xs-12 margin_20">
-        									<label for="size">Square Footage Required</label>
-        									<select id="size" v-model="form_data.size" class="form-control">
-                                                <option value="">Select square footage</option>
-                                                <option value="Less than 500 sq.ft.">Less than 500 sq.ft.</option>
-                                                <option value="500 - 1000 sq. ft.">500 - 1000 sq. ft.</option>
-                                                <option value="1000 - 2500 sq. ft.">1000 - 2500 sq. ft. </option>
-                                                <option value="More than 2500 sq. ft.">More than 2500 sq. ft.</option>
-                                            </select>
+            						<div class="form-group">
+            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('dates')}">
+        									<label for="dates">Requested Dates <span class="req_star"> *</span></label>
+        									<input v-model="form_data.dates" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="dates" type="text" data-vv-delay="500" data-vv-as="Requested Dates">
+        									<span v-show="errors.has('dates')" class="form-control-feedback">{{ errors.first('dates') }}</span>
         								</div>
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('location')}">
+            								<label for="location">Requested Location<span class="req_star"> *</span></label>
+            								<input v-model="form_data.location" v-validate="'required|location'" class="form-control" :class="{'input': true}" name="location" type="text" data-vv-delay="500" data-vv-as="Requested Location">
+            								<span v-show="errors.has('location')" class="form-control-feedback">{{ errors.first('location') }}</span>
+            							</div>
             						</div>
             						<div class="form-group">
             						    <div class="col-xs-12">
-        									<label for="comments">Comments</label>
-        									<textarea id="comments" class="form-control" v-model="form_data.comments"></textarea>
+        									<label for="use_of_space">Proposed Use of Space</label>
+        									<textarea id="use_of_space" class="form-control" v-model="form_data.use_of_space"></textarea>
         								</div>
         							</div>
             						<div class="form-group">
