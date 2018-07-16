@@ -223,7 +223,7 @@
                 },
                 validateBeforeSubmitPerm() {
                     this.validNumError = false;
-                    this.$validator.validateAll().then((result) => {
+                    this.$validator.validate().then((result) => {
                         if (result) {
                             let errors = this.errors;
                             //format email
@@ -262,7 +262,7 @@
                 },
                 validateBeforeSubmitTemp() {
                     this.validNumError = false;
-                    this.$validator.validateAll().then((result) => {
+                    this.$validator.validate().then((result) => {
                         if (result) {
                             let errors = this.errors;
                             //format email
