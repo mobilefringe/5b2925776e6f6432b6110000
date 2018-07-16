@@ -186,7 +186,7 @@
                             $.ajax({
                                 url : send_data.url,
                                 type: "POST",
-                                data : formatted_formdata,
+                                data : perm_formdata,
                                 success: function(data, textStatus, jqXHR){
                                     vm.formSuccess = true;
                                 },
