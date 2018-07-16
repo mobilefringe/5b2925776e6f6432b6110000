@@ -181,7 +181,7 @@
                             perm_formdata.body["Square Footage Required"] =  this.form_data.size, 
                             perm_formdata.body["Comments"] =  this.form_data.comments,
                             
-                            send_data.form_data = Utility.serializeObject(perm_formdata);
+                            send_data.form_data = serializeObject(perm_formdata);
                             console.log("Data ", send_data.form_data)
                             // var vm = this;
                             // $.ajax({
