@@ -223,6 +223,7 @@
                 },
                 validateBeforeSubmitPerm() {
                     this.$validator.validate().then((result) => {
+                        console.log(result)
                         if (result) {
                             let errors = this.errors;
                             //format email
