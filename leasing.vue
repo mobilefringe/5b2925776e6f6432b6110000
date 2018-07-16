@@ -16,6 +16,8 @@
                         <div class="details_col_9">
                             <h3>Permanent Leasing</h3>
                             <hr>
+                            <div v-html=""></div>
+                            <div class="page_body" v-if="permLeasing" v-html="permLeasing.body"></div>
         					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmit">
         						<div class="form-group ">
         							<div class="col-xs-12 margin_20" :class="{'has-error': errors.has('legalName')}">
@@ -103,6 +105,7 @@
                 return {
                     dataLoaded: false,
                     pageBanner: null,
+                    permLeasing: null,
                     form_data: {},
                     formSuccess: false,
                     formError: false,
