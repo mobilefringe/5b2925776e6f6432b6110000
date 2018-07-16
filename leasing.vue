@@ -227,7 +227,8 @@
                     this.validNumError = false;
                     this.$validator.validateAll().then((result) => {
                         if (result) {
-                            let errors = this.errorsPerm;
+                            this.errors = this.errorsPerm
+                            let errors = this.errors;
                             //format email
                             send_data = {};
                             send_data.url = "https://www.mallmaverick.com/send_contact_email";
@@ -266,7 +267,8 @@
                     this.validNumError = false;
                     this.$validator.validateAll().then((result) => {
                         if (result) {
-                            let errors = this.errorsTemp;
+                            this.errors = this.errorsTemp
+                            let errors = this.errors;
                             //format email
                             send_data = {};
                             send_data.url = "https://www.mallmaverick.com/send_contact_email";
