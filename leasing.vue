@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <div v-if="leasingImages" class="row leasing_images">
+                    <div v-if="leasingImages" class="row">
                         <div v-for="image in leasingImages" class="col-md-4 leasing_photo_container">
                             <a :href="image.image_url" data-lightbox="leasing images">
                                 <div class="leasing_photo" :style="{ backgroundImage: 'url(' +image.image_url+ ')' }"></div>
