@@ -133,7 +133,7 @@
         								</div>
             							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('location')}">
             								<label for="location">Requested Location<span class="req_star"> *</span></label>
-            								<input v-model="form_data.location" v-validate="'required|location'" class="form-control" :class="{'input': true}" name="location" type="text" data-vv-delay="500" data-vv-as="Requested Location">
+            								<input v-model="form_data.location" v-validate="'required|true'" class="form-control" :class="{'input': true}" name="location" type="text" data-vv-delay="500" data-vv-as="Requested Location">
             								<span v-show="errors.has('location')" class="form-control-feedback">{{ errors.first('location') }}</span>
             							</div>
             						</div>
@@ -222,7 +222,6 @@
                     }
                 },
                 validateBeforeSubmitPerm() {
-                    this.validNumError = false;
                     this.$validator.validate().then((result) => {
                         if (result) {
                             let errors = this.errors;
