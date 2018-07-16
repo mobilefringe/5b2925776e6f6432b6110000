@@ -56,9 +56,8 @@
                         this.leasingImages = repo_data.images;
                     }
                                 
-                    this.permLeasing = response[0].data;
-                    this.tempLeasing = response[1].data;
-                    
+                    this.currentPage = response[0].data;
+
                     this.dataLoaded = true;
                 });
             },
