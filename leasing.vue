@@ -54,10 +54,10 @@
     									<!--<span v-show="errors.has('size')" class="form-control-feedback">{{ errors.first('size') }}</span>-->
     									<select id="size" v-model="form_data.size" class="form-control">
                                             <option value="">Select square footage</option>
-                                            <option value="hurr">Less than 500 sq.ft.</option>
-                                            <option value="hurr">500 - 1000 sq. ft.</option>
-                                            <option value="hurr">1001 - 2500 sq. ft. </option>
-                                            <option value="hurr">2500 + sq. ft.</option>
+                                            <option value="Less than 500 sq.ft.">Less than 500 sq.ft.</option>
+                                            <option value="500 - 1000 sq. ft.">500 - 1000 sq. ft.</option>
+                                            <option value="1000 - 2500 sq. ft.">1000 - 2500 sq. ft. </option>
+                                            <option value="More than 2500 sq. ft.">More than 2500 sq. ft.</option>
                                         </select>
     								</div>
         						</div>
