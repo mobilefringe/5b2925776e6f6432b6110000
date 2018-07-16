@@ -93,6 +93,74 @@
             				<div>
             				    <h3 class="inside_page_header">Specialty Short Term Leasing</h3>
                                 <div class="margin_40 page_body" v-if="tempLeasing" v-html="tempLeasing.body"></div>
+                                <form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmitTemp">
+            						<div class="form-group ">
+            							<div class="col-xs-12 margin_20" :class="{'has-error': errors.has('legalName')}">
+            								<label for="legalName">Legal Name of Organization<span class="req_star"> *</span></label>
+            								<input v-model="form_data.legalName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="legalName" type="text" data-vv-delay="500" data-vv-as="Legal Name of Organization">
+            								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
+            							</div>
+            						</div>
+            						<div class="form-group">
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('firstName')}">
+            							    <label for="firstName">Contact First Name<span class="req_star"> *</span></label>
+            								<input v-model="form_data.firstName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="firstName" type="text" data-vv-delay="500" data-vv-as="Contact First Name">
+            								<span v-show="errors.has('firstName')" class="form-control-feedback">{{ errors.first('firstName') }}</span>
+            							</div>
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('lastName')}">
+            							    <label for="lastName">Contact Last Name<span class="req_star"> *</span></label>
+            								<input v-model="form_data.lastName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="lastName" type="text" data-vv-delay="500" data-vv-as="Contact Last Name">
+            								<span v-show="errors.has('lastName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
+            							</div>
+            						</div>
+            						<div class="form-group">
+            						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('phone')}">
+        									<label for="phone">Contact Phone Number<span class="req_star"> *</span></label>
+        									<input v-model="form_data.phone" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phone" type="text" data-vv-delay="500" data-vv-as="Contact Phone Number">
+        									<span v-show="errors.has('phone')" class="form-control-feedback">{{ errors.first('phone') }}</span>
+        								</div>
+            							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('email')}">
+            								<label for="email">Contact Email Address<span class="req_star"> *</span></label>
+            								<input v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" data-vv-delay="500" data-vv-as="Contact Email Address">
+            								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
+            							</div>
+            						</div>
+        							<div class="form-group">
+            						    <div class="col-xs-12 margin_20">
+        									<label for="size">Square Footage Required</label>
+        									<select id="size" v-model="form_data.size" class="form-control">
+                                                <option value="">Select square footage</option>
+                                                <option value="Less than 500 sq.ft.">Less than 500 sq.ft.</option>
+                                                <option value="500 - 1000 sq. ft.">500 - 1000 sq. ft.</option>
+                                                <option value="1000 - 2500 sq. ft.">1000 - 2500 sq. ft. </option>
+                                                <option value="More than 2500 sq. ft.">More than 2500 sq. ft.</option>
+                                            </select>
+        								</div>
+            						</div>
+            						<div class="form-group">
+            						    <div class="col-xs-12">
+        									<label for="comments">Comments</label>
+        									<textarea id="comments" class="form-control" v-model="form_data.comments"></textarea>
+        								</div>
+        							</div>
+            						<div class="form-group">
+            							<div class="col-xs-12">
+            								<button class="fill_btn" type="submit" :disabled="formSuccess">
+            								    Submit <i class="fa fa-angle-right" aria-hidden="true"></i>
+        								    </button>
+            							</div>
+            						</div>
+            					</form>
+            					<div id="send_contact_success" class="alert alert-success text-left" role="alert" v-show="formSuccess">
+            						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            						<span class="sr-only">Success</span>
+            						Thank you for contacting us. A member from our team will contact you shortly.
+            					</div>
+            					<div id="send_contact_error" class="alert alert-danger text-left" role="alert" v-show="formError">
+            						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            						<span class="sr-only">Error:</span>
+            						There was an error when trying to submit your request. Please try again later.
+            					</div>
             				</div>
         				</div>
     				</div>
