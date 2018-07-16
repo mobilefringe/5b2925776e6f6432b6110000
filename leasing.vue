@@ -14,7 +14,7 @@
                             <div class="margin_40">
                                 <h3 class="inside_page_header">Permanent Leasing</h3>
                                 <div class="margin_40 page_body" v-if="permLeasing" v-html="permLeasing.body"></div>
-            					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmit">
+            					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmitPerm">
             						<div class="form-group ">
             							<div class="col-xs-12 margin_20" :class="{'has-error': errors.has('legalName')}">
             								<label for="legalName">Legal Name of Organization<span class="req_star"> *</span></label>
@@ -159,7 +159,46 @@
                         console.log("Error loading data: " + e.message);
                     }
                 },
-                validateBeforeSubmit() {
+                validateBeforeSubmitPerm() {
+                    this.validNumError = false;
+                    this.$validator.validateAll().then((result) => {
+                        if (result) {
+                            let errors = this.errors;
+                            //format email
+                            send_data = {};
+                            send_data.url = "https://www.mallmaverick.com/send_contact_email";
+                            var perm_formdata = {}; //JSON.stringify(this.serializeObject(this.form_data));
+                            perm_formdata.send_to = "caitlin@mobilefringe.com";
+                            perm_formdata.subject = "Gerrard Square Permanent Leasing Form"; 
+                            perm_formdata.body = {};
+                            perm_formdata.body["Legal Name of Organization"] =  this.form_data.legalName;
+                             
+                            perm_formdata.body["Contact First Name"] =   this.form_data.firstName, 
+                            perm_formdata.body["Contact Last Name"] = this.form_data.lastName,
+                            perm_formdata.body["Contact Phone Number"] = this.form_data.phone, 
+                            perm_formdata.body["Contact Email Address" ] =  this.form_data.email, 
+                            perm_formdata.body["Square Footage Required"] =  this.form_data.size, 
+                            perm_formdata.body["Comments"] =  this.form_data.comments,
+                            
+                            send_data.form_data = Utility.serializeObject(perm_formdata);
+                            console.log("Data ", send_data.form_data)
+                            var vm = this;
+                            $.ajax({
+                                url : send_data.url,
+                                type: "POST",
+                                data : perm_formdata,
+                                success: function(data, textStatus, jqXHR){
+                                    vm.formSuccess = true;
+                                },
+                                error: function (jqXHR, textStatus, errorThrown){
+                                  console.log("Data load error: " + error.message);
+                                  vm.formError = true;
+                                }
+                            });
+                        }
+                    })
+                },
+                validateBeforeSubmitTemp() {
                     this.validNumError = false;
                     this.$validator.validateAll().then((result) => {
                         if (result) {
