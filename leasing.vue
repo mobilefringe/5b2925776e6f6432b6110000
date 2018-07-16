@@ -167,7 +167,7 @@
     define(["Vue", "vuex", "vue-meta", "moment", "moment-timezone", "vue-moment", "jquery", "vee-validate", "utility"], function(Vue, Vuex, Meta, moment, tz, VueMoment, $, VeeValidate, Utility) {
         Vue.use(Meta);
         Vue.use(VeeValidate);
-        return Vue.component("community-component", {
+        return Vue.component("leasing-component", {
             template: template, // the variable template will be injected
             data: function() {
                 return {
