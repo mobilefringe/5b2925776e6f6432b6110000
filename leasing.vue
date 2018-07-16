@@ -17,38 +17,38 @@
 
         					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmit">
         						<div class="form-group ">
-        							<div class="col-xs-12" :class="{'has-error': errors.has('legalName')}">
+        							<div class="col-xs-12 margin_20" :class="{'has-error': errors.has('legalName')}">
         								<label for="legalName">Legal Name of Organization<span class="req_star"> *</span></label>
         								<input v-model="form_data.legalName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="legalName" type="text" data-vv-delay="500" data-vv-as="Legal Name of Organization">
         								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
         							</div>
         						</div>
         						<div class="form-group">
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('first_name')}">
+        							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('first_name')}">
         							    <label for="firstName">Contact First Name<span class="req_star"> *</span></label>
         								<input v-model="form_data.firstName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="firstName" type="text" data-vv-delay="500" data-vv-as="Contact First Name">
         								<span v-show="errors.has('firstName')" class="form-control-feedback">{{ errors.first('firstName') }}</span>
         							</div>
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('last_name')}">
+        							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('last_name')}">
         							    <label for="lastName">Contact Last Name<span class="req_star"> *</span></label>
         								<input v-model="form_data.lastName" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="lastName" type="text" data-vv-delay="500" data-vv-as="Contact Last Name">
         								<span v-show="errors.has('legalName')" class="form-control-feedback">{{ errors.first('legalName') }}</span>
         							</div>
         						</div>
         						<div class="form-group">
-        						    <div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('phone')}">
+        						    <div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('phone')}">
     									<label for="phone">Telephone Number<span class="req_star"> *</span></label>
     									<input v-model="form_data.phone" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="phone" type="text" data-vv-delay="500" data-vv-as="Telephone Number">
     									<span v-show="errors.has('phone')" class="form-control-feedback">{{ errors.first('phone') }}</span>
     								</div>
-        							<div class="col-sm-6 col-xs-12" :class="{'has-error': errors.has('email')}">
+        							<div class="col-sm-6 col-xs-12 margin_20" :class="{'has-error': errors.has('email')}">
         								<label for="email">Email<span class="req_star"> *</span></label>
         								<input v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" data-vv-delay="500">
         								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
         							</div>
         						</div>
     							<div class="form-group">
-        						    <div class="col-xs-12" :class="{'has-error': errors.has('size')}">
+        						    <div class="col-xs-12 margin_20" :class="{'has-error': errors.has('size')}">
     									<label for="size">Square Footage Required</label>
     									<!--<input v-model="form_data.size" v-validate="'required:true'" class="form-control" :class="{'input': true}" name="size" type="text" data-vv-delay="500" data-vv-as="Square Footage Required">-->
     									<!--<span v-show="errors.has('size')" class="form-control-feedback">{{ errors.first('size') }}</span>-->
