@@ -181,8 +181,10 @@
                     permLeasing: null,
                     tempLeasing: null,
                     form_data: {},
+                    errorsPerm: null,
                     formSuccessPerm: false,
                     formErrorPerm: false,
+                    errorsTemp: null,
                     formSuccessTemp: false,
                     formErrorTemp: false
                 }
