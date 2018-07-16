@@ -103,7 +103,6 @@
 </template>
 <script>
     define(["Vue", "vuex", "jquery", "vee-validate", "utility"], function(Vue, Vuex, $, VeeValidate, Utility) {
-        Vue.use(Meta);
         Vue.use(VeeValidate);
         return Vue.component("leasing-component", {
             template: template, // the variable template will be injected
@@ -198,17 +197,6 @@
                             // });
                         }
                     })
-                },
-                serializeObject(obj) {
-                    console.log(obj);
-                    var newObj = [];
-                    _.forEach(obj, function(value, key) {
-                        var tempVal = {};
-                        tempVal.name = key;
-                        tempVal.value = value;
-                        newObj.push(tempVal);
-                    });
-                    return newObj;
                 }
             }
         });
