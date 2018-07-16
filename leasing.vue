@@ -106,6 +106,7 @@
                     dataLoaded: false,
                     pageBanner: null,
                     permLeasing: null,
+                    tempLeasing: null,
                     form_data: {},
                     formSuccess: false,
                     formError: false,
