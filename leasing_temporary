@@ -94,7 +94,7 @@
 <script>
     define(["Vue", "vuex", "jquery", "vee-validate", "utility"], function(Vue, Vuex, $, VeeValidate, Utility) {
         Vue.use(VeeValidate);
-        return Vue.component("leasing-component", {
+        return Vue.component("leasing-temporary-component", {
             template: template, // the variable template will be injected
             data: function() {
                 return {
