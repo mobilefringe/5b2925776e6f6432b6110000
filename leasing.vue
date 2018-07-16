@@ -9,12 +9,12 @@
                     </div>
                 </div>
                 <div class="main_container mobile_padding margin_30">
-                    <div class="row">
+                    <div class="row margin_20">
                         <div class="col-md-12">
                             <div class="page_body" v-html="currentPage.body"></div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row margin_20">
                         <div class="col-md-6">
                             <div class="pull-left">
                                 <a href="" target="_blank">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <div v-if="leasingImages" class="row">
+                    <div v-if="leasingImages" class="row margin_20">
                         <div v-for="image in leasingImages" class="col-md-4 leasing_photo_container">
                             <a :href="image.image_url" data-lightbox="leasing images">
                                 <div class="leasing_photo" :style="{ backgroundImage: 'url(' +image.image_url+ ')' }"></div>
