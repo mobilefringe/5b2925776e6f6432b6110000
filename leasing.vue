@@ -203,7 +203,8 @@
             computed: {
                 ...Vuex.mapGetters([
                     'property',
-                    'timezone'
+                    'timezone',
+                    'findRepoByName'
                 ]),
             },
             methods: {
