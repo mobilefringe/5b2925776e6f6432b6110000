@@ -272,13 +272,13 @@
                             temp_formdata.send_to = "caitlin@mobilefringe.com";
                             temp_formdata.subject = "Gerrard Square Permanent Leasing Form"; 
                             temp_formdata.body = {};
-                            temp_formdata.body["Legal Name of Organization"] =  this.form_data.legalName;
-                             
-                            temp_formdata.body["Contact First Name"] =   this.form_data.firstName, 
-                            temp_formdata.body["Contact Last Name"] = this.form_data.lastName,
-                            temp_formdata.body["Contact Phone Number"] = this.form_data.phone, 
-                            temp_formdata.body["Contact Email Address" ] =  this.form_data.email, 
-                            temp_formdata.body["Square Footage Required"] =  this.form_data.size, 
+                            temp_formdata.body["Legal Name of Organization"] =  this.form_data.legalNameTemp;
+                            temp_formdata.body["Contact First Name"] =   this.form_data.firstNameTemp, 
+                            temp_formdata.body["Contact Last Name"] = this.form_data.lastNameTemp,
+                            temp_formdata.body["Contact Phone Number"] = this.form_data.phoneTemp, 
+                            temp_formdata.body["Contact Email Address" ] =  this.form_data.emailTemp, 
+                            // temp_formdata.body["Square Footage Required"] =  this.form_data.size, 
+                            // temp_formdata.body["Square Footage Required"] =  this.form_data.size, 
                             temp_formdata.body["Comments"] =  this.form_data.comments,
                             
                             send_data.form_data = Utility.serializeObject(temp_formdata);
