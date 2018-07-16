@@ -14,7 +14,8 @@
                             <img class="img_max" src="//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/jpeg/1531500156000/sidebanner4.jpg" alt="" />    
                         </div>
                         <div class="details_col_9">
-
+                            <h3>Permanent Leasing</h3>
+                            <hr>
         					<form class="form-horizontal padding_top_20" action="form-submit" v-on:submit.prevent="validateBeforeSubmit">
         						<div class="form-group ">
         							<div class="col-xs-12 margin_20" :class="{'has-error': errors.has('legalName')}">
