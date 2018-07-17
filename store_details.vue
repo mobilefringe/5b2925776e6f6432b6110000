@@ -112,11 +112,13 @@
             template: template, // the variable template will be injected,
             data: function() {
                 return {
+                    dataLoaded: false,
+                    
                     currentStore: null,
                     promotions : [],
                     jobs:[],
-                    hours: [],
-                    dataLoaded: false
+                    storeHours: [],
+                    
                 }
             },
             props:['id'],
@@ -146,7 +148,7 @@
                         _.forEach(this.currentStore.store_hours, function (value, key) {
                             storeHours.push(vm.findHourById(value));
                         });
-                        this.hours = storeHours;
+                        this.storeHours = storeHours;
                     }
                     
                     var temp_promo = [];
