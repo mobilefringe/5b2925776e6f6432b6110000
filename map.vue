@@ -220,7 +220,7 @@
                     this.svgMapRef.addMarker(option);
                 },
                 dropPin(store) {
-                    consoloe.log(store)
+                    console.log(store)
                     this.$refs.mapplic_ref.showLocation(store.svgmap_region);
                 }
             }
