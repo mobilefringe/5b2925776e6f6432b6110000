@@ -1,119 +1,111 @@
 <template>
-	<div class="page_container store_dets_container" v-if="dataLoaded" id="store_dets_container">
-		<div class="row">
-			<div class="col-sm-4 store_logo_container">
-				<div>
-					<img :src="currentStore.store_front_url_abs" :alt="currentStore.name"/>
-				</div>
-			</div>
-			<div class="col-sm-8 store_map_container">
-				<div id="mapsvg_store_detail">
-					<mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500" @updateMap="updateSVGMap" :key="currentStore.id"></mapplic-map>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-4 store_details_container">
-				<div>
-					<h1>{{currentStore.name}}</h1>
-					<p>{{currentStore.category_name}}</p>
-					<p>{{currentStore.phone}}</p>
-					<div class="margin_20">
-					    <a v-bind:href="'//'+currentStore.website" target="_blank">Visit Store Site</a>    
-					</div>
-					
-					<div v-if="currentStore.store_hours && currentStore.store_hours.length > 0">
-					    <p class="underline">Store Hours</p>
-					    <ul class="store_details_hours">
-                            <li v-if="!hour.is_closed" v-for="hour in hours">
-                                <span class="day day col-xs-6">{{hour.day_of_week | moment("dddd", timezone)}}: </span><span class="hour">{{hour.open_time | moment("h:mma", timezone)}} - {{hour.close_time | moment("h:mma", timezone)}}</span>
-                            </li>
-                            <li v-else>
-                                <span class="day">{{hour.day_of_week | moment("dddd", timezone)}}: </span><span class="hour">CLOSED</span>
-                            </li>
-                        </ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-8 store_desc_container">
-				<div class="text-left store_description">
-					<p>{{currentStore.description}}</p>
-				</div>
-			</div>
-		</div>
-		<div class="store_promo_container" v-if="currentStore && currentStore.total_published_promos > 0">
-		    <div class="promo_container_title text-left all_caps"> Sales & Promotions</div>
-		    <div class="row store_promo_dets text-left" v-for="promo in promotions">
-		        <div class="col-sm-7" >
-		        <div class="promo_div_image">
-		            <img :src="promo.image_url" :alt="promo.name"/>
-		        </div>
-		        </div>
-		        <div class="col-sm-5 promo_div_dets">
-		            <p class="promo_div_name">{{promo.name}}</p>
-		            <p class="promo_div_store_name">{{currentStore.name | uppercase}}</p>
-		            <p class="promo_div_date">{{promo.start_date | moment("MMM D", timezone)}} - {{promo.end_date | moment("MMM D", timezone)}}</p>
-					<p class="promo_div_description">{{promo.description_short}}</p>
-					<span class="feature_read_more">
-						<router-link :to="'/promotions_and_events/'+promo.slug" class="mobile_readmore" >
-							<p class="feature-readmore   hvr-sweep-to-right">Promotion Details <i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></p>
-						</router-link>
-					</span>
-		        </div>
-		    </div>
-		</div>
-	</div>
+    <div> <!-- without an outer container div this component template will not render -->
+        <loading-spinner v-if="!dataLoaded"></loading-spinner>
+        <transition name="fade">
+            <div v-if="dataLoaded" v-cloak>
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
+                    <div class="main_container">
+                        <div class="page_container">
+                            <h2>{{ currentStore.name }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_container margin_30">
+                    <div class="details_row">
+                        <div class="details_col_3">
+                            <img class="store_details_image center-block" :src="currentStore.store_front_url_abs" :alt="currentStore.name + ' Logo'" />
+                            <div v-if="currentStore.phone">
+                                <h3 class="inside_page_title">Phone</h3>
+                                <a class="store_details_phone" :href="'tel:' + currentStore.phone">{{ currentStore.phone }}</a>    
+                            </div>
+                            <a v-if="currentStore.website" class="animated_btn" :href="'http://' + currentStore.website" target="_blank">Visit Website</a>
+                        </div>
+                        <div class="details_col_9">
+                            <div id="map" class="margin_20">
+                                <!--<mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>-->
+                                
+                                <mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500"  :key="currentStore.id"></mapplic-map> <!-- @updateMap="updateSVGMap" -->
+                            </div>
+                            <div class="inside_page_header">Store Hours & Information</div>
+                            <ul v-if="storeHours" class="store_details_hours_list">
+                                <li v-for="hour in storeHours" :class="{ today: hour.todays_hours }">
+                                    <div v-if="!hour.is_closed">
+                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>{{hour.open_time | moment("h:mma", timezone)}} - {{hour.close_time | moment("h:mma", timezone)}}
+                                    </div>
+                                    <div v-else>
+                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>CLOSED
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class=" margin_30 store_details_desc" v-html="currentStore.rich_description"></div>
+                            <div v-if="this.currentStore.promotions">
+                                <b-card no-body class="mb-1 inside_page_toggle">
+                                    <b-card-header header-tag="header" class="p-1" role="tab">
+                                        <b-btn block @click="togglePromos = !togglePromos" :aria-expanded="togglePromos ? 'true' : 'false'" aria-controls="togglePromotions">
+                                            Promotions
+                                            <i v-if="togglePromos"  class="fa fa-minus f"></i>
+                                            <i v-else  class="fa fa-plus"></i>
+                                        </b-btn>
+                                    </b-card-header>
+                                    <b-collapse v-for="promo in storePromotions" v-model="togglePromos" role="tabpanel" id="togglePromotions" class="accordion_body">
+                                        <b-card-body>
+                                            <div class="row">
+                                                <div class="col-md-5" v-if="">
+                                                    <img :src="promo.image_url" :alt="'Promotion: ' + promo.name" />
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <h3 class="promo_name">{{promo.name}}</h3>
+                                                    <p class="promo_date" v-if="isMultiDay(promo)">
+                        							    {{ promo.start_date | moment("MMMM D", timezone)}} to {{ promo.end_date | moment("MMMM D", timezone)}}
+                                                    </p>
+                                                    <p class="promo_date" v-else>{{ promo.start_date | moment("MMMM D", timezone)}}</p>
+                                                    <div class="promo_desc" v-html="promo.description_short"></div>
+                                                    <router-link :to="'/promotions/'+ promo.slug" >
+							                            <i class="fa fa-caret-right"></i> <span class="read_more">View Promotion Details</span>
+					                                </router-link>
+                                                </div>
+                                            </div>
+                                            <hr class="promo_separator" />
+                                        </b-card-body>
+                                    </b-collapse>
+                                </b-card>
+                            </div>
+                            <div v-if="this.currentStore.jobs">
+                                <b-card no-body class="mb-1 inside_page_toggle">
+                                    <b-card-header header-tag="header" class="p-1" role="tab">
+                                        <b-btn block @click="toggleJobs = !toggleJobs" :aria-expanded="toggleJobs ? 'true' : 'false'" aria-controls="toggleJobs">
+                                            Jobs
+                                            <i v-if="toggleJobs"  class="fa fa-minus f"></i>
+                                            <i v-else  class="fa fa-plus"></i>
+                                        </b-btn>
+                                    </b-card-header>
+                                    <b-collapse v-for="job in storeJobs" v-model="toggleJobs" role="tabpanel" id="toggleJobs" class="accordion_body">
+                                        <b-card-body>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h3 class="promo_name">{{job.name}}</h3>
+                                                    <p class="promo_date" v-if="isMultiDay(job)">
+                        							    {{ job.start_date | moment("MMMM D", timezone)}} to {{ job.end_date | moment("MMMM D", timezone)}}
+                                                    </p>
+                                                    <p class="promo_date" v-else>{{ job.start_date | moment("MMMM D", timezone)}}</p>
+                                                    <router-link :to="'/jobs/'+ job.slug" >
+							                            <i class="fa fa-caret-right"></i> <span class="read_more">View Job Details</span>
+					                                </router-link>
+                                                </div>
+                                            </div>
+                                            <hr class="promo_separator" />
+                                        </b-card-body>
+                                    </b-collapse>
+                                </b-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </div>
 </template>
-<style>
-    .store_logo_container,
-    .store_map_container,
-    .store_details_container,
-    .store_desc_container{
-        padding: 20px 10px;
-    }
-    .store_logo_container div {
-        width:300px;
-        height:300px;
-        position: relative;
-        border: 1px solid #aea99e;
-    }
-    .store_logo_container img{
-        /*border: 1px solid #aea99e;*/
-        /*width:300px;*/
-        /*height:300px*/
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    
-    .promo_container_title{
-        border-top:1px solid #aea99e;
-        border-bottom:1px solid #aea99e;
-        height: 35px;
-        line-height: 35px;
-    }
-    #store_dets_container #mapsvg_store_detail {
-        border: 1px solid #aea99e;
-    }
-    #store_dets_container .map {
-        height: 300px;
-        overflow:hidden;
-    }
-	#store_dets_container .mapplic-popup-link {
-	    display:none!important;
-	}
-	#store_dets_container .mapplic-popup-link, .mapplic-tooltip-close {
-	    display:none!important;
-	}
-	#store_dets_container .mapplic-tooltip-content {
-	    margin-right: auto;
-	}
-	#store_dets_container .mapplic-tooltip-title {
-        text-align: center;
-        margin: auto!important;
-	}
-</style>
+
 <script>
     define(['Vue', 'vuex', 'moment', "vue!mapplic-svg"], function(Vue, Vuex, moment, MapplicComponent) {
         return Vue.component("store-details-component", {
