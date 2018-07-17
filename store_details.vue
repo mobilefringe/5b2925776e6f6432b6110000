@@ -205,6 +205,7 @@
                     
                     if(floor_maps_repo !== null && floor_maps_repo !== undefined && floor_maps_repo.images.length > 0){
                         floor_maps = floor_maps_repo.images;
+                        console.log("Coord ", this.currentStore.z_coordinate)
                         if (this.currentStore.z_coordinate == 1) {
                             var floor_1 = {};
                             floor_1.id = "first-floor";
