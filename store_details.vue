@@ -328,11 +328,12 @@
                         this.$router.replace({ name: 'stores' });
                     }
                 },
-                updateSVGMap(map) {
+                updateSVGMap(currentStore) {
                     console.log(map)
                     this.map = map;
-                    this.svgMapRef.showLocation(this.currentStore.svgmap_region);
-                    this.svgMapRef.addActiveClass(this.currentStore.svgmap_region);
+                    var store = currentStore
+                    this.svgMapRef.showLocation(store.svgmap_region);
+                    this.svgMapRef.addActiveClass(store.svgmap_region);
                 },
                 dropPin(store) {
                     this.svgMapRef.showLocation(store.svgmap_region);
