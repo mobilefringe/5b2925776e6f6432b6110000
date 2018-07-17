@@ -22,8 +22,6 @@
                         </div>
                         <div class="details_col_9">
                             <div id="map" class="margin_20">
-                                <!--<mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>-->
-                                
                                 <mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500" @updateMap="updateSVGMap" :key="currentStore.id"></mapplic-map>
                             </div>
                             <div class="inside_page_header">Store Hours & Information</div>
@@ -129,7 +127,15 @@
             },
             created (){
                 this.loadData().then(response => {
-                    this.dataLoaded = true;
+                    var temp_repo = this.findRepoByName('Directory Banner').images;
+                    if(temp_repo != null) {
+                        this.pageBanner = temp_repo[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                        }
+                    }
+                    
                     this.updateCurrentStore(this.id);
                 });
             },
@@ -243,6 +249,8 @@
                     this.currentStore = this.findStoreBySlug(id);
                     if (this.currentStore === null || this.currentStore === undefined){
                         this.$router.replace({ path: '/'});
+                    } else {
+                        this.dataLoaded = true;
                     }
                 },
                 updateSVGMap(map) {
