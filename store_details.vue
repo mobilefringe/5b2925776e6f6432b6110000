@@ -213,49 +213,102 @@
                     category = this.findCategoryById(currentStoreCategory)
                     return category.name
                 },
+                // allStores() {
+                //     this.processedStores.map(function(store){
+                //         store.zoom = 4;
+                //     })
+                //     return this.processedStores;
+                // },
+                // getSVGMap() {
+                //     var svg_maps = this.findRepoByName("SVG Maps").images 
+                //     var floor_one = "";
+                //     var floor_two = "";
+                //     _.forEach(svg_maps, function(value, key) {
+                //         if(value.id == 41084) {
+                //             floor_one = _.split(value.image_url, '?');
+                //             floor_one = floor_one[0];
+                //         }
+                //         if (value.id == 41085) {
+                //             floor_two = _.split(value.image_url, '?');
+                //             floor_two = floor_two[0];
+                //         }
+                //     });
+                //     this.floorOne = floor_one;
+                //     this.floorTwo = floor_two;
+                // },
+                // floorList () {
+                //     var floor_list = [];
+                    
+                //     var floor_1 = {};
+                //     floor_1.id = "first-floor";
+                //     floor_1.title = "Level One";
+                //     floor_1.map = this.floorOne;
+                //     // floor_1.minimap = this.miniOne;
+                //     floor_1.z_index = 1;
+                //     floor_1.show = true;
+                //     floor_list.push(floor_1);
+                    
+                //     var floor_2 = {};
+                //     floor_2.id = "second-floor";
+                //     floor_2.title = "Level Two";
+                //     floor_2.map = this.floorTwo;
+                //     // floor_2.minimap = this.miniTwo;
+                //     floor_2.z_index = 2;
+                //     floor_2.show = false;
+                //     floor_list.push(floor_2);
+                    
+                //     return floor_list;
+                // }
+                
+                getSVGurl() {
+                    return "https://www.mallmaverick.com" + this.property.svg_map_url;
+                },
+                svgMapRef() {
+                    return this.$refs.svgmap_ref;
+                },
                 allStores() {
                     this.processedStores.map(function(store){
                         store.zoom = 4;
                     })
                     return this.processedStores;
                 },
-                getSVGMap() {
-                    var svg_maps = this.findRepoByName("SVG Maps").images 
-                    var floor_one = "";
-                    var floor_two = "";
-                    _.forEach(svg_maps, function(value, key) {
-                        if(value.id == 41084) {
-                            floor_one = _.split(value.image_url, '?');
-                            floor_one = floor_one[0];
-                        }
-                        if (value.id == 41085) {
-                            floor_two = _.split(value.image_url, '?');
-                            floor_two = floor_two[0];
-                        }
-                    });
-                    this.floorOne = floor_one;
-                    this.floorTwo = floor_two;
-                },
                 floorList () {
                     var floor_list = [];
                     
-                    var floor_1 = {};
-                    floor_1.id = "first-floor";
-                    floor_1.title = "Level One";
-                    floor_1.map = this.floorOne;
-                    // floor_1.minimap = this.miniOne;
-                    floor_1.z_index = 1;
-                    floor_1.show = true;
-                    floor_list.push(floor_1);
+                    //get svg maps from repo
+                    var floor_maps_repo = this.findRepoByName('SVG Map');
                     
-                    var floor_2 = {};
-                    floor_2.id = "second-floor";
-                    floor_2.title = "Level Two";
-                    floor_2.map = this.floorTwo;
-                    // floor_2.minimap = this.miniTwo;
-                    floor_2.z_index = 2;
-                    floor_2.show = false;
-                    floor_list.push(floor_2);
+                    if(floor_maps_repo !== null && floor_maps_repo !== undefined && floor_maps_repo.images.length > 0){
+                        floor_maps = floor_maps_repo.images;
+                        if (this.currentStore.z_coordinate == 0) {
+                            var floor_0 = {};
+                            floor_0.id = "basement-floor";
+                            floor_0.title = "Level 0";
+                            floor_0.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40469);}).image_url;
+                            floor_0.z_index = 0;
+                            floor_0.show = true;
+                            
+                            floor_list.push(floor_0);
+                        } else if (this.currentStore.z_coordinate == 1) {
+                            var floor_1 = {};
+                            floor_1.id = "first-floor";
+                            floor_1.title = "Level 1";
+                            floor_1.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40470);}).image_url;
+                            floor_1.z_index = 1;
+                            floor_1.show = true;
+                            
+                            floor_list.push(floor_1);
+                        } else if (this.currentStore.z_coordinate == 2) {
+                            var floor_2 = {};
+                            floor_2.id = "second-floor";
+                            floor_2.title = "Level 2";
+                            floor_2.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40471);}).image_url;
+                            floor_2.z_index = 2;
+                            floor_2.show = true;
+                            
+                            floor_list.push(floor_2);
+                        }
+                    }
                     
                     return floor_list;
                 }
