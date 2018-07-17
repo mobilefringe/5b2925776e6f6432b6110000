@@ -121,7 +121,7 @@
             props:['id'],
             beforeRouteUpdate(to, from, next) {
                 this.loadData().then(response => {
-                    this.dataLoaded = true;
+                    // this.dataLoaded = true;
                     this.updateCurrentStore(to.params.id);
                 });
                 next();
