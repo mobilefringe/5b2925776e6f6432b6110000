@@ -274,6 +274,7 @@
                     }
                 },
                 updateSVGMap(map) {
+                    console.log(map)
                     this.map = map;
                     this.svgMapRef.showLocation(this.currentStore.svgmap_region);
                     this.svgMapRef.addActiveClass(this.currentStore.svgmap_region);
