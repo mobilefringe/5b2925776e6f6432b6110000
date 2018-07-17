@@ -145,7 +145,7 @@
                 },
                 currentStore: function () {
                     this.currentStore.zoom = 2;
-                    this.updateSVGMap();
+                    this.updateSVGMap(this.currentStore);
                     if (_.includes(this.currentStore.store_front_url_abs, 'missing')) {
                         this.currentStore.store_front_url_abs = this.property.default_logo_url;
                     }
