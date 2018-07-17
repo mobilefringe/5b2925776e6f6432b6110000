@@ -3,13 +3,13 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <!--<div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">-->
-                <!--    <div class="main_container">-->
-                <!--        <div class="page_container">-->
-                <!--            <h2>{{ currentStore.name }}</h2>-->
-                <!--        </div>-->
-                <!--    </div>-->
-                <!--</div>-->
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
+                    <div class="main_container">
+                        <div class="page_container">
+                            <h2>{{ currentStore.name }}</h2>
+                        </div>
+                    </div>
+                </div>
                 <div class="main_container margin_30">
                     <div class="details_row">
                         <div class="details_col_3">
@@ -110,11 +110,12 @@
             template: template, // the variable template will be injected,
             data: function() {
                 return {
+                    dataLoaded: false,
+                    pageBanner: null,
                     currentStore: null,
                     promotions : [],
                     jobs:[],
                     hours: [],
-                    dataLoaded: false
                 }
             },
             props:['id'],
