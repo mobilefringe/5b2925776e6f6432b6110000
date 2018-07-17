@@ -2,7 +2,7 @@
     <div v-if="currentMessage" class="main_container">
         <div class="message_content">
             <!--<h1 class="center">{{ currentMessage.title }}</h1>-->
-            <p>{{ currentMessage.body }}</p> 
+            <p class="center">{{ currentMessage.body }}</p> 
         </div>
     </div>
 </template>
