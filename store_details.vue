@@ -121,8 +121,10 @@
                     dataLoaded: false,
                     pageBanner: null,
                     currentStore: null,
-                    promotions : [],
-                    jobs:[],
+                    storePromotions: null,
+                    togglePromos: false,
+                    storeJobs: null,
+                    toggleJobs: false,
                     storeHours: [],
                 }
             },
