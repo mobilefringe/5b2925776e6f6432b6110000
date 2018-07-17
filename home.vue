@@ -15,7 +15,7 @@
                 </div>
                 <div class="main_container">
                     <div class="welcome_message">
-                        <p v-if="property.description.length > 0">{{property.description}}</p>
+                        <messages-component></messages-component>
                     </div>
                 </div>
                 <div class="main_container">
@@ -34,7 +34,7 @@
     </div>
 </template>
 <script>
-    define(["Vue", "vuex", "vue!vue-slick"], function (Vue, Vuex, slick) {
+    define(["Vue", "vuex", "vue!vue-slick", "vue!welcome_msg"], function (Vue, Vuex, slick, welcomeMessage) {
         return Vue.component("home-component", {
             template: template, // the variable template will be injected
             data: function() {
