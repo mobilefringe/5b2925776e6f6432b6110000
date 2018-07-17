@@ -15,14 +15,6 @@
                         </div>
                         <div class="details_col_9">
                             <div class="page_body" v-html="currentPage.body"></div>
-                            <div v-if="leasingImages" class="leasing_images">
-                                <div v-for="image in leasingImages" class="col-md-6 leasing_photo_container">
-                                    <a :href="image.image_url" data-lightbox="leasing images">
-                                        <div class="leasing_photo" :style="{ backgroundImage: 'url(' +image.image_url+ ')' }"></div>
-                                        <p style="display:none;">{{image.id}}</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,8 +33,7 @@
                 return {
                     dataLoaded: false,
                     pageBanner: null,
-                    currentPage: null,
-                    leasingImages : null
+                    currentPage: null
                 }
             },
             created() {
@@ -65,33 +56,6 @@
                         var _this = this;
                         this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                             _this.currentPage = response.data;
-                            if(_.includes(_this.id,'leasing')) {
-                                var temp_repo = _this.findRepoByName('Leasing Banner').images;
-                                if(temp_repo != null) {
-                                    _this.pageBanner = temp_repo[0];
-                                } else {
-                                    _this.pageBanner = {
-                                        "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
-                                    }
-                                }
-                    
-                                var repo_data = _this.findRepoByName("Leasing Images");
-                                if(repo_data != null && repo_data !== undefined && repo_data.images.length > 0){
-                                    _this.leasingImages = repo_data.images;
-                                }
-                            } else {
-                                var temp_repo = _this.findRepoByName('Inside Page Banner').images;
-                                if(temp_repo != null) {
-                                    _this.pageBanner = temp_repo[0];
-                                } else {
-                                    _this.pageBanner = {
-                                        "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
-                                    }
-                                }  
-                                
-                                _this.leasingImages = null;
-                            }
-                            
                             _this.dataLoaded = true;
                         }, function (error) {
                             console.error( "Could not retrieve data from server. Please check internet connection and try again.");
