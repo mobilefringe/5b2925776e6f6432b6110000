@@ -22,7 +22,7 @@
                         </div>
                         <div class="details_col_9">
                             <div id="map" class="margin_20">
-                                <mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>
+                                <mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>
                             </div>
                             <div class="inside_page_header">Store Hours & Information</div>
                             <ul v-if="storeHours" class="store_details_hours_list">
