@@ -22,7 +22,9 @@
                         </div>
                         <div class="details_col_9">
                             <div id="map" class="margin_20">
-                                <mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>
+                                <!--<mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>-->
+                                
+                                <mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500" @updateMap="updateSVGMap" :key="currentStore.id"></mapplic-map>
                             </div>
                             <div class="inside_page_header">Store Hours & Information</div>
                             <ul v-if="storeHours" class="store_details_hours_list">
@@ -265,13 +267,13 @@
                         this.$router.replace({ name: 'stores' });
                     }
                 },
-                updateSVGMap (map) {
+                updateSVGMap(map) {
                     this.map = map;
-                    this.dropPin();
+                    this.svgMapRef.showLocation(this.currentStore.svgmap_region);
+                    this.svgMapRef.addActiveClass(this.currentStore.svgmap_region);
                 },
-                dropPin () {
-                    this.svgMapRef.addMarker(this.currentStore, '//codecloud.cdn.speedyrails.net/sites/589e308f6e6f641b9f010000/image/png/1484850466000/show_pin.png');
-                    this.svgMapRef.setViewBox(this.currentStore)
+                dropPin(store) {
+                    this.svgMapRef.showLocation(store.svgmap_region);
                 },
                 isMultiDay(promo) {
                     var timezone = this.timezone
