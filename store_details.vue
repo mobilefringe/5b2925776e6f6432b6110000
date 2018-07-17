@@ -212,6 +212,12 @@
                     category = this.findCategoryById(currentStoreCategory)
                     return category.name
                 },
+                allStores() {
+                    this.processedStores.map(function(store){
+                        store.zoom = 4;
+                    })
+                    return this.processedStores;
+                },
                 getSVGMap() {
                     var svg_maps = this.findRepoByName("SVG Maps").images 
                     var floor_one = "";
