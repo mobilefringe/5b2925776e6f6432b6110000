@@ -217,8 +217,7 @@
                 },
                 floorList () {
                     var floor_list = [];
-                    
-                    //get svg maps from repo
+                    // Get SVG Maps from Repo
                     var floor_maps_repo = this.findRepoByName('SVG Maps');
                     
                     if(floor_maps_repo !== null && floor_maps_repo !== undefined && floor_maps_repo.images.length > 0){
