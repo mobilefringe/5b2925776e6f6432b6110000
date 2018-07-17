@@ -3,13 +3,13 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
-                    <div class="main_container">
-                        <div class="page_container">
-                            <h2>{{ currentStore.name }}</h2>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">-->
+                <!--    <div class="main_container">-->
+                <!--        <div class="page_container">-->
+                <!--            <h2>{{ currentStore.name }}</h2>-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <!--</div>-->
                 <div class="main_container margin_30">
                     <div class="details_row">
                         <div class="details_col_3">
@@ -22,7 +22,9 @@
                         </div>
                         <div class="details_col_9">
                             <div id="map" class="margin_20">
-                                <mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500" @updateMap="updateSVGMap" :key="currentStore.id"></mapplic-map>
+                                <!--<mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>-->
+                                
+                                <mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500"  :key="currentStore.id"></mapplic-map> <!-- @updateMap="updateSVGMap" -->
                             </div>
                             <div class="inside_page_header">Store Hours & Information</div>
                             <ul v-if="storeHours" class="store_details_hours_list">
@@ -110,81 +112,66 @@
             template: template, // the variable template will be injected,
             data: function() {
                 return {
-                    dataLoaded: false,
-                    pageBanner: null,
                     currentStore: null,
                     promotions : [],
                     jobs:[],
-                    storeHours: [],
+                    hours: [],
+                    dataLoaded: false
                 }
             },
             props:['id'],
             beforeRouteUpdate(to, from, next) {
                 this.loadData().then(response => {
-                    // this.dataLoaded = true;
+                    this.dataLoaded = true;
                     this.updateCurrentStore(to.params.id);
                 });
                 next();
             },
             created (){
                 this.loadData().then(response => {
-                    var temp_repo = this.findRepoByName('Directory Banner').images;
-                    if(temp_repo != null) {
-                        this.pageBanner = temp_repo[0];
-                    } else {
-                        this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
-                        }
-                    }
-                    
+                    this.dataLoaded = true;
                     this.updateCurrentStore(this.id);
                 });
             },
             watch: {
                 currentStore: function() {
                     this.currentStore.zoom = 2;
-                    this.updateSVGMap(this.currentStore);
-                    if (_.includes(this.currentStore.store_front_url_abs, 'missing')) {
+                    if ( _.includes(this.currentStore.store_front_url_abs, 'missing')) {
                         this.currentStore.store_front_url_abs = this.property.default_logo_url;
                     }
                     
                     var vm = this;
-                    var storeHours = [];
-                    _.forEach(this.currentStore.store_hours, function (value, key) {
-                        hours = vm.findHourById(value)
-                        today = moment().day();
-                        if( today == hours.day_of_week ){
-                            hours.todays_hours = true;
-                        } else {
-                            hours.todays_hours = false;
-                        }
-                        storeHours.push(hours);
-                    });
-                    this.storeHours = _.sortBy(storeHours, function(o) { return o.day_of_week });
-                
-                    var vm = this;
+                    if (this.currentStore.store_hours) {
+                        var storeHours = [];
+                        _.forEach(this.currentStore.store_hours, function (value, key) {
+                            storeHours.push(vm.findHourById(value));
+                        });
+                        this.hours = storeHours;
+                    }
+                    
                     var temp_promo = [];
+                    var temp_job = [];
                     _.forEach(this.currentStore.promotions, function(value, key) {
                         var current_promo = vm.findPromoById(value);
-                        
-                        if (_.includes(current_promo.image_url, 'missing')) {
-                            current_promo.image_url = "http://placehold.it/1560x800/757575";
-                        }
-                        current_promo.description_short = _.truncate(current_promo.description, { 'length': 150, 'separator': ' ' });
-
+                        current_promo.description_short = _.truncate(current_promo.description, {
+                            'length': 70
+                        });
                         temp_promo.push(current_promo);
-                    }); 
-                    this.storePromotions = temp_promo;
-                    this.togglePromos = true;
-                    
-                    var vm = this;
-                    var temp_job = [];
+                    });
                     _.forEach(this.currentStore.jobs, function(value, key) {
                         var current_job = vm.findJobById(value);
+                        current_job.description_short = _.truncate(current_job.description, {
+                            'length': 70
+                        });
                         temp_job.push(current_job);
-                    }); 
-                    this.storeJobs = temp_job;
-                    this.toggleJobs = true;
+
+                    })
+                    this.promotions = temp_promo;
+                    this.jobs = temp_job;
+                    
+                    // setTimeout(function() {
+                    //     vm.addLandmark(vm.currentStore);
+                    // }, 500);
                 },
             },
             computed: {
@@ -256,8 +243,6 @@
                     this.currentStore = this.findStoreBySlug(id);
                     if (this.currentStore === null || this.currentStore === undefined){
                         this.$router.replace({ path: '/'});
-                    } else {
-                        this.dataLoaded = true;
                     }
                 },
                 updateSVGMap(map) {
