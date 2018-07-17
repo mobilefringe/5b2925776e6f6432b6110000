@@ -79,7 +79,7 @@
                         "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
                     }
                 }
-                this.updateCurrentPage(this.id);
+                // this.updateCurrentPage(this.id);
             },
             mounted () {
                 this.form_data.email = this.$route.query.email;
