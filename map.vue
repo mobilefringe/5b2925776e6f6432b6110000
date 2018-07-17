@@ -162,35 +162,44 @@
                     this.floorOne = floor_one;
                     this.floorTwo = floor_two;
                 },
-                getMiniMap () {
-                    var svg_maps = this.findRepoByName("PNG Mini Map").images 
-                    var floor_one = "";
-                    var floor_two = "";
-                    _.forEach(svg_maps, function(value, key) {
-                        if(value.id == 37990) {
-                            floor_one = _.split(value.image_url, '?');
-                            floor_one = floor_one[0];
-                        }
-                        if (value.id == 37991) {
-                            floor_two = _.split(value.image_url, '?');
-                            floor_two = floor_two[0];
-                        }
-                    });
-                    this.miniOne = floor_one;
-                    this.miniTwo = floor_two;
-                },
+                // getMiniMap () {
+                //     var svg_maps = this.findRepoByName("PNG Mini Map").images 
+                //     var floor_one = "";
+                //     var floor_two = "";
+                //     _.forEach(svg_maps, function(value, key) {
+                //         if(value.id == 37990) {
+                //             floor_one = _.split(value.image_url, '?');
+                //             floor_one = floor_one[0];
+                //         }
+                //         if (value.id == 37991) {
+                //             floor_two = _.split(value.image_url, '?');
+                //             floor_two = floor_two[0];
+                //         }
+                //     });
+                //     this.miniOne = floor_one;
+                //     this.miniTwo = floor_two;
+                // },
                 floorList () {
                     var floor_list = [];
                     
                     var floor_1 = {};
                     floor_1.id = "first-floor";
                     floor_1.title = "Level One";
-                    floor_1.map = this.getSVGMap
-                    // floor_1.minimap = this.miniOne;
+                    floor_1.map = this.floorOne;
+                    floor_1.minimap = this.miniOne;
                     floor_1.z_index = 1;
                     floor_1.show = true;
                     floor_list.push(floor_1);
-
+                    
+                    var floor_2 = {};
+                    floor_2.id = "second-floor";
+                    floor_2.title = "Level Two";
+                    floor_2.map = this.floorTwo;
+                    floor_2.minimap = this.miniTwo;
+                    floor_2.z_index = 2;
+                    floor_2.show = false;
+                    floor_list.push(floor_2);
+                    
                     return floor_list;
                 }
             },
