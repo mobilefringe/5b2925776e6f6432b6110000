@@ -30,7 +30,9 @@
                             </div>
                         </div>
                         <div class="details_col_9">
-                            <mapplic-png-map ref="pngmap_ref" :height="700" :hovertip="true" :storelist="allStores" :floorlist="floorList" :bindLocationOpened="true" :svgWidth="property.map_image_width" :svgHeight="property.map_image_height" :showPin="true" tooltiplabel="View Store Details"></mapplic-png-map>
+                            <mapplic-map ref="mapplic_ref" :height="566" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="Info"></mapplic-map>
+                            
+                            <!--<mapplic-png-map ref="pngmap_ref" :height="700" :hovertip="true" :storelist="allStores" :floorlist="floorList" :bindLocationOpened="true" :svgWidth="property.map_image_width" :svgHeight="property.map_image_height" :showPin="true" tooltiplabel="View Store Details"></mapplic-png-map>-->
                         </div>
                     </div>
                 </div>
@@ -39,7 +41,7 @@
     </div>
 </template>
 <script>
-    define(["Vue", "vuex", "vue-select", "vue!mapplic-png-map"], function(Vue, Vuex, VueSelect, MapplicComponent) {
+    define(["Vue", "vuex", "vue!mapplic-map", "vue-select"], function(Vue, Vuex, MapplicComponent, VueSelect) {
         Vue.component('v-select', VueSelect.VueSelect);
         return Vue.component("stores-component", {
             template: template, // the variable template will be injected
@@ -47,7 +49,11 @@
             data: function() {
                 return {
                     dataLoaded: false,
-                    pageBanner: null
+                    pageBanner: null,
+                    floorOne: null,
+                    floorTwo: null,
+                    miniOne: null,
+                    miniTwo: null
                 }
             },
             created (){
@@ -64,49 +70,151 @@
                     this.dataLoaded = true;
                 });
             },
+            // computed: {
+            //     ...Vuex.mapGetters([
+            //         'property',
+            //         'findRepoByName',
+            //         'processedStores'
+            //     ]),
+            //     allStores() {
+            //         this.processedStores.map(function(store){
+            //             store.zoom = 1;
+            //         })
+            //         return this.processedStores;
+            //     },
+            //     getPNGurl() {
+            //         return "https://www.mallmaverick.com" + this.property.map_url;
+            //     },
+            //     pngMapRef() {
+            //         return this.$refs.pngmap_ref;
+            //     },
+            //     floorList () {
+            //         var floor_list = [];
+                    
+            //         var floor_1 = {};
+            //         floor_1.id = "first-floor";
+            //         floor_1.title = "Floor 1";
+            //         floor_1.map = this.getPNGurl;
+            //         floor_1.z_index = 1;
+            //         floor_1.show = true;
+                    
+            //         floor_list.push(floor_1);
+            //         return floor_list;
+            //     }
+            // },
+            // methods: {
+            //     loadData: async function () {
+            //         try {
+            //             let results = await Promise.all([this.$store.dispatch("getData", "repos")]);
+            //             return results;
+            //         } catch (e) {
+            //             console.log("Error loading data: " + e.message);
+            //         }
+            //     },
+            //     dropPin(store) {
+            //         this.pngMapRef.showLocation(store.id);
+            //     }
+            // }
             computed: {
                 ...Vuex.mapGetters([
-                    'property',
-                    'findRepoByName',
-                    'processedStores'
+                    "property",
+                    "timezone",
+                    "repos",
+                    "findRepoByName",
+                    "processedStores",
+                    'storesByAlphaIndex',
                 ]),
                 allStores() {
-                    this.processedStores.map(function(store){
-                        store.zoom = 1;
-                    })
-                    return this.processedStores;
+                    var all_stores = this.processedStores;
+                    _.forEach(all_stores, function(value, key) {
+                        value.zoom = 2;
+                    });
+                    var initZoom = {};
+                    initZoom.svgmap_region = "init";
+                    initZoom.z_coordinate = 1;
+                    initZoom.x = 0.5;
+                    initZoom.y = 0.5;
+                    initZoom.zoom = 1;
+                    all_stores.push(initZoom)
+                    return all_stores
                 },
-                getPNGurl() {
-                    return "https://www.mallmaverick.com" + this.property.map_url;
+                // getSVGMap () {
+                //     var mapURL = "https://www.mallmaverick.com" + this.property.svgmap_url.split("?")[0];
+                //     return mapURL
+                // },
+                getSVGMap () {
+                    var svg_maps = this.findRepoByName("SVG Maps").images 
+                    // var floor_one = "";
+                    // var floor_two = "";
+                    // _.forEach(svg_maps, function(value, key) {
+                    //     if(value.id == 37978) {
+                    //         floor_one = _.split(value.image_url, '?');
+                    //         floor_one = floor_one[0];
+                    //     }
+                    //     if (value.id == 37979) {
+                    //         floor_two = _.split(value.image_url, '?');
+                    //         floor_two = floor_two[0];
+                    //     }
+                    // });
+                    this.floorOne = floor_one;
+                    this.floorTwo = floor_two;
                 },
-                pngMapRef() {
-                    return this.$refs.pngmap_ref;
+                getMiniMap () {
+                    var svg_maps = this.findRepoByName("PNG Mini Map").images 
+                    var floor_one = "";
+                    var floor_two = "";
+                    _.forEach(svg_maps, function(value, key) {
+                        if(value.id == 37990) {
+                            floor_one = _.split(value.image_url, '?');
+                            floor_one = floor_one[0];
+                        }
+                        if (value.id == 37991) {
+                            floor_two = _.split(value.image_url, '?');
+                            floor_two = floor_two[0];
+                        }
+                    });
+                    this.miniOne = floor_one;
+                    this.miniTwo = floor_two;
                 },
                 floorList () {
                     var floor_list = [];
                     
                     var floor_1 = {};
                     floor_1.id = "first-floor";
-                    floor_1.title = "Floor 1";
-                    floor_1.map = this.getPNGurl;
+                    floor_1.title = "Level One";
+                    floor_1.map = this.getSVGMap
+                    // floor_1.minimap = this.miniOne;
                     floor_1.z_index = 1;
                     floor_1.show = true;
-                    
                     floor_list.push(floor_1);
+
                     return floor_list;
                 }
             },
             methods: {
-                loadData: async function () {
+                loadData: async function() {
                     try {
                         let results = await Promise.all([this.$store.dispatch("getData", "repos")]);
-                        return results;
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
                     }
                 },
+                filterStores (letter) {
+                    if(letter == "All" || letter == undefined || letter == null){
+                        this.filteredStores = this.processedStores;
+                    } else {
+                        var filtered = _.filter(this.storesByAlphaIndex, function(o,i) { return _.lowerCase(i) == _.lowerCase(letter); })[0];
+                        this.filteredStores = filtered
+                    }
+                },
+                onOptionSelect(option) {
+                    this.$nextTick(function() {
+                        this.storeSearch = ""
+                    });
+                    this.svgMapRef.addMarker(option);
+                },
                 dropPin(store) {
-                    this.pngMapRef.showLocation(store.id);
+                    this.$refs.mapplic_ref.showLocation(store.svgmap_region);
                 }
             }
         });
