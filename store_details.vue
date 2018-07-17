@@ -3,13 +3,13 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <!--<div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">-->
-                <!--    <div class="main_container">-->
-                <!--        <div class="page_container">-->
-                <!--            <h2>{{ currentStore.name }}</h2>-->
-                <!--        </div>-->
-                <!--    </div>-->
-                <!--</div>-->
+                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
+                    <div class="main_container">
+                        <div class="page_container">
+                            <h2>{{ currentStore.name }}</h2>
+                        </div>
+                    </div>
+                </div>
                 <div class="main_container margin_30">
                     <div class="details_row">
                         <div class="details_col_3">
@@ -111,6 +111,7 @@
         display: none;
     }
 </style>
+
 <script>
     define(['Vue', 'vuex', 'moment', "vue!mapplic-map"], function(Vue, Vuex, moment, MapplicComponent) {
         return Vue.component("store-details-component", {
@@ -118,12 +119,11 @@
             data: function() {
                 return {
                     dataLoaded: false,
-                    
+                    pageBanner: null,
                     currentStore: null,
                     promotions : [],
                     jobs:[],
                     storeHours: [],
-                    
                 }
             },
             props:['id'],
@@ -136,6 +136,15 @@
             },
             created (){
                 this.loadData().then(response => {
+                    var temp_repo = this.findRepoByName('Directory Banner').images;
+                    if(temp_repo != null) {
+                        this.pageBanner = temp_repo[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                        }
+                    }
+                    
                     this.dataLoaded = true;
                     this.updateCurrentStore(this.id);
                 });
