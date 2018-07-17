@@ -1,218 +1,203 @@
 <template>
-    <div> <!-- without an outer container div this component template will not render -->
-        <loading-spinner v-if="!dataLoaded"></loading-spinner>
-        <transition name="fade">
-            <div v-if="dataLoaded" v-cloak>
-                <div class="inside_header_background" :style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
-                    <div class="main_container">
-                        <div class="page_container">
-                            <h2>{{ currentStore.name }}</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="main_container margin_30">
-                    <div class="details_row">
-                        <div class="details_col_3">
-                            <img class="store_details_image center-block" :src="currentStore.store_front_url_abs" :alt="currentStore.name + ' Logo'" />
-                            <div v-if="currentStore.phone">
-                                <h3 class="inside_page_title">Phone</h3>
-                                <a class="store_details_phone" :href="'tel:' + currentStore.phone">{{ currentStore.phone }}</a>    
-                            </div>
-                            <a v-if="currentStore.website" class="animated_btn" :href="'http://' + currentStore.website" target="_blank">Visit Website</a>
-                        </div>
-                        <div class="details_col_9">
-                            <div id="map" class="margin_20">
-                                <!--<mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>-->
-                                
-                                <mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500"  :key="currentStore.id"></mapplic-map> <!-- @updateMap="updateSVGMap" -->
-                            </div>
-                            <div class="inside_page_header">Store Hours & Information</div>
-                            <ul v-if="storeHours" class="store_details_hours_list">
-                                <li v-for="hour in storeHours" :class="{ today: hour.todays_hours }">
-                                    <div v-if="!hour.is_closed">
-                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>{{hour.open_time | moment("h:mma", timezone)}} - {{hour.close_time | moment("h:mma", timezone)}}
-                                    </div>
-                                    <div v-else>
-                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>CLOSED
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class=" margin_30 store_details_desc" v-html="currentStore.rich_description"></div>
-                            <div v-if="this.currentStore.promotions">
-                                <b-card no-body class="mb-1 inside_page_toggle">
-                                    <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-btn block @click="togglePromos = !togglePromos" :aria-expanded="togglePromos ? 'true' : 'false'" aria-controls="togglePromotions">
-                                            Promotions
-                                            <i v-if="togglePromos"  class="fa fa-minus f"></i>
-                                            <i v-else  class="fa fa-plus"></i>
-                                        </b-btn>
-                                    </b-card-header>
-                                    <b-collapse v-for="promo in storePromotions" v-model="togglePromos" role="tabpanel" id="togglePromotions" class="accordion_body">
-                                        <b-card-body>
-                                            <div class="row">
-                                                <div class="col-md-5" v-if="">
-                                                    <img :src="promo.image_url" :alt="'Promotion: ' + promo.name" />
-                                                </div>
-                                                <div class="col-md-7">
-                                                    <h3 class="promo_name">{{promo.name}}</h3>
-                                                    <p class="promo_date" v-if="isMultiDay(promo)">
-                        							    {{ promo.start_date | moment("MMMM D", timezone)}} to {{ promo.end_date | moment("MMMM D", timezone)}}
-                                                    </p>
-                                                    <p class="promo_date" v-else>{{ promo.start_date | moment("MMMM D", timezone)}}</p>
-                                                    <div class="promo_desc" v-html="promo.description_short"></div>
-                                                    <router-link :to="'/promotions/'+ promo.slug" >
-							                            <i class="fa fa-caret-right"></i> <span class="read_more">View Promotion Details</span>
-					                                </router-link>
-                                                </div>
-                                            </div>
-                                            <hr class="promo_separator" />
-                                        </b-card-body>
-                                    </b-collapse>
-                                </b-card>
-                            </div>
-                            <div v-if="this.currentStore.jobs">
-                                <b-card no-body class="mb-1 inside_page_toggle">
-                                    <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-btn block @click="toggleJobs = !toggleJobs" :aria-expanded="toggleJobs ? 'true' : 'false'" aria-controls="toggleJobs">
-                                            Jobs
-                                            <i v-if="toggleJobs"  class="fa fa-minus f"></i>
-                                            <i v-else  class="fa fa-plus"></i>
-                                        </b-btn>
-                                    </b-card-header>
-                                    <b-collapse v-for="job in storeJobs" v-model="toggleJobs" role="tabpanel" id="toggleJobs" class="accordion_body">
-                                        <b-card-body>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h3 class="promo_name">{{job.name}}</h3>
-                                                    <p class="promo_date" v-if="isMultiDay(job)">
-                        							    {{ job.start_date | moment("MMMM D", timezone)}} to {{ job.end_date | moment("MMMM D", timezone)}}
-                                                    </p>
-                                                    <p class="promo_date" v-else>{{ job.start_date | moment("MMMM D", timezone)}}</p>
-                                                    <router-link :to="'/jobs/'+ job.slug" >
-							                            <i class="fa fa-caret-right"></i> <span class="read_more">View Job Details</span>
-					                                </router-link>
-                                                </div>
-                                            </div>
-                                            <hr class="promo_separator" />
-                                        </b-card-body>
-                                    </b-collapse>
-                                </b-card>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </transition>
-    </div>
+	<div class="page_container store_dets_container" v-if="dataLoaded" id="store_dets_container">
+		<div class="row">
+			<div class="col-sm-4 store_logo_container">
+				<div>
+					<img :src="currentStore.store_front_url_abs" :alt="currentStore.name"/>
+				</div>
+			</div>
+			<div class="col-sm-8 store_map_container">
+				<div id="mapsvg_store_detail">
+					<mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500" @updateMap="updateSVGMap" :key="currentStore.id"></mapplic-map>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 store_details_container">
+				<div>
+					<h1>{{currentStore.name}}</h1>
+					<p>{{currentStore.category_name}}</p>
+					<p>{{currentStore.phone}}</p>
+					<div class="margin_20">
+					    <a v-bind:href="'//'+currentStore.website" target="_blank">Visit Store Site</a>    
+					</div>
+					
+					<div v-if="currentStore.store_hours && currentStore.store_hours.length > 0">
+					    <p class="underline">Store Hours</p>
+					    <ul class="store_details_hours">
+                            <li v-if="!hour.is_closed" v-for="hour in hours">
+                                <span class="day day col-xs-6">{{hour.day_of_week | moment("dddd", timezone)}}: </span><span class="hour">{{hour.open_time | moment("h:mma", timezone)}} - {{hour.close_time | moment("h:mma", timezone)}}</span>
+                            </li>
+                            <li v-else>
+                                <span class="day">{{hour.day_of_week | moment("dddd", timezone)}}: </span><span class="hour">CLOSED</span>
+                            </li>
+                        </ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-8 store_desc_container">
+				<div class="text-left store_description">
+					<p>{{currentStore.description}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="store_promo_container" v-if="currentStore && currentStore.total_published_promos > 0">
+		    <div class="promo_container_title text-left all_caps"> Sales & Promotions</div>
+		    <div class="row store_promo_dets text-left" v-for="promo in promotions">
+		        <div class="col-sm-7" >
+		        <div class="promo_div_image">
+		            <img :src="promo.image_url" :alt="promo.name"/>
+		        </div>
+		        </div>
+		        <div class="col-sm-5 promo_div_dets">
+		            <p class="promo_div_name">{{promo.name}}</p>
+		            <p class="promo_div_store_name">{{currentStore.name | uppercase}}</p>
+		            <p class="promo_div_date">{{promo.start_date | moment("MMM D", timezone)}} - {{promo.end_date | moment("MMM D", timezone)}}</p>
+					<p class="promo_div_description">{{promo.description_short}}</p>
+					<span class="feature_read_more">
+						<router-link :to="'/promotions_and_events/'+promo.slug" class="mobile_readmore" >
+							<p class="feature-readmore   hvr-sweep-to-right">Promotion Details <i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></p>
+						</router-link>
+					</span>
+		        </div>
+		    </div>
+		</div>
+	</div>
 </template>
-
+<style>
+    .store_logo_container,
+    .store_map_container,
+    .store_details_container,
+    .store_desc_container{
+        padding: 20px 10px;
+    }
+    .store_logo_container div {
+        width:300px;
+        height:300px;
+        position: relative;
+        border: 1px solid #aea99e;
+    }
+    .store_logo_container img{
+        /*border: 1px solid #aea99e;*/
+        /*width:300px;*/
+        /*height:300px*/
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .promo_container_title{
+        border-top:1px solid #aea99e;
+        border-bottom:1px solid #aea99e;
+        height: 35px;
+        line-height: 35px;
+    }
+    #store_dets_container #mapsvg_store_detail {
+        border: 1px solid #aea99e;
+    }
+    #store_dets_container .map {
+        height: 300px;
+        overflow:hidden;
+    }
+	#store_dets_container .mapplic-popup-link {
+	    display:none!important;
+	}
+	#store_dets_container .mapplic-popup-link, .mapplic-tooltip-close {
+	    display:none!important;
+	}
+	#store_dets_container .mapplic-tooltip-content {
+	    margin-right: auto;
+	}
+	#store_dets_container .mapplic-tooltip-title {
+        text-align: center;
+        margin: auto!important;
+	}
+</style>
 <script>
-    define(["Vue", "vuex", "moment", "jquery", "bootstrap-vue", "vue!mapplic-map"], function (Vue, Vuex, moment, $, BootstrapVue, MapplicComponent) {
-        Vue.use(BootstrapVue);
+    define(['Vue', 'vuex', 'moment', "vue!mapplic-svg"], function(Vue, Vuex, moment, MapplicComponent) {
         return Vue.component("store-details-component", {
             template: template, // the variable template will be injected,
-            props: ['id'],
-            data: function () {
+            data: function() {
                 return {
-                    dataLoaded: false,
                     currentStore: null,
-                    storeHours: null,
-                    storePromotions: null,
-                    togglePromos: false,
-                    storeJobs: null,
-                    toggleJobs: false,
-                    map: null
+                    promotions : [],
+                    jobs:[],
+                    hours: [],
+                    dataLoaded: false
                 }
+            },
+            props:['id'],
+            beforeRouteUpdate(to, from, next) {
+                this.loadData().then(response => {
+                    this.dataLoaded = true;
+                    this.updateCurrentStore(to.params.id);
+                });
+                next();
             },
             created (){
                 this.loadData().then(response => {
-                    var temp_repo = this.findRepoByName('Directory Banner').images;
-                    if(temp_repo != null) {
-                        this.pageBanner = temp_repo[0];
-                    } else {
-                        this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
-                        }
-                    }
-                    this.getSVGMap;
-                    this.updateCurrentStore(this.id);
                     this.dataLoaded = true;
+                    this.updateCurrentStore(this.id);
                 });
             },
             watch: {
-                $route: function () {
-                    this.updateCurrentStore(this.$route.params.id);
-                },
-                currentStore: function () {
+                currentStore: function() {
                     this.currentStore.zoom = 2;
-                    this.updateSVGMap(this.currentStore);
-                    if (_.includes(this.currentStore.store_front_url_abs, 'missing')) {
+                    if ( _.includes(this.currentStore.store_front_url_abs, 'missing')) {
                         this.currentStore.store_front_url_abs = this.property.default_logo_url;
                     }
                     
                     var vm = this;
-                    var storeHours = [];
-                    _.forEach(this.currentStore.store_hours, function (value, key) {
-                        hours = vm.findHourById(value)
-                        today = moment().day();
-                        if( today == hours.day_of_week ){
-                            hours.todays_hours = true;
-                        } else {
-                            hours.todays_hours = false;
-                        }
-                        storeHours.push(hours);
-                    });
-                    this.storeHours = _.sortBy(storeHours, function(o) { return o.day_of_week });
-                
-                    var vm = this;
+                    if (this.currentStore.store_hours) {
+                        var storeHours = [];
+                        _.forEach(this.currentStore.store_hours, function (value, key) {
+                            storeHours.push(vm.findHourById(value));
+                        });
+                        this.hours = storeHours;
+                    }
+                    
                     var temp_promo = [];
+                    var temp_job = [];
                     _.forEach(this.currentStore.promotions, function(value, key) {
                         var current_promo = vm.findPromoById(value);
-                        
-                        if (_.includes(current_promo.image_url, 'missing')) {
-                            current_promo.image_url = "http://placehold.it/1560x800/757575";
-                        }
-                        current_promo.description_short = _.truncate(current_promo.description, { 'length': 150, 'separator': ' ' });
-
+                        current_promo.description_short = _.truncate(current_promo.description, {
+                            'length': 70
+                        });
                         temp_promo.push(current_promo);
-                    }); 
-                    this.storePromotions = temp_promo;
-                    this.togglePromos = true;
-                    
-                    var vm = this;
-                    var temp_job = [];
+                    });
                     _.forEach(this.currentStore.jobs, function(value, key) {
                         var current_job = vm.findJobById(value);
+                        current_job.description_short = _.truncate(current_job.description, {
+                            'length': 70
+                        });
                         temp_job.push(current_job);
-                    }); 
-                    this.storeJobs = temp_job;
-                    this.toggleJobs = true;
-                },
-                // map : function (){
+
+                    })
+                    this.promotions = temp_promo;
+                    this.jobs = temp_job;
                     
-                //         var vm = this;
-                //         setTimeout(function () {
-                //             vm.dropPin();
-                //         }, 500);
-                   
-                // }
+                    // setTimeout(function() {
+                    //     vm.addLandmark(vm.currentStore);
+                    // }, 500);
+                },
             },
             computed: {
                 ...Vuex.mapGetters([
                     'property',
                     'timezone',
-                    'findRepoByName',
                     'processedStores',
                     'findStoreBySlug',
-                    'findCategoryById',
                     'findHourById',
                     'findPromoById',
-                    'findJobById'
+                    'findJobById',
+                    'findRepoByName'
                 ]),
-                storeCategory() {
-                    var currentStoreCategory = this.currentStore.categories[0];
-                    category = this.findCategoryById(currentStoreCategory)
-                    return category.name
+                getSVGurl() {
+                    return "https://www.mallmaverick.com" + this.property.svg_map_url;
+                },
+                svgMapRef() {
+                    return this.$refs.svgmap_ref;
                 },
                 allStores() {
                     this.processedStores.map(function(store){
@@ -220,134 +205,70 @@
                     })
                     return this.processedStores;
                 },
-                getSVGMap() {
-                    var svg_maps = this.findRepoByName("SVG Maps").images 
-                    var floor_one = "";
-                    var floor_two = "";
-                    _.forEach(svg_maps, function(value, key) {
-                        if(value.id == 41084) {
-                            floor_one = _.split(value.image_url, '?');
-                            floor_one = floor_one[0];
-                        }
-                        if (value.id == 41085) {
-                            floor_two = _.split(value.image_url, '?');
-                            floor_two = floor_two[0];
-                        }
-                    });
-                    this.floorOne = floor_one;
-                    this.floorTwo = floor_two;
-                },
                 floorList () {
                     var floor_list = [];
                     
-                    var floor_1 = {};
-                    floor_1.id = "first-floor";
-                    floor_1.title = "Level One";
-                    floor_1.map = this.floorOne;
-                    // floor_1.minimap = this.miniOne;
-                    floor_1.z_index = 1;
-                    floor_1.show = true;
-                    floor_list.push(floor_1);
+                    //get svg maps from repo
+                    var floor_maps_repo = this.findRepoByName('SVG Map');
                     
-                    var floor_2 = {};
-                    floor_2.id = "second-floor";
-                    floor_2.title = "Level Two";
-                    floor_2.map = this.floorTwo;
-                    // floor_2.minimap = this.miniTwo;
-                    floor_2.z_index = 2;
-                    floor_2.show = false;
-                    floor_list.push(floor_2);
+                    if(floor_maps_repo !== null && floor_maps_repo !== undefined && floor_maps_repo.images.length > 0){
+                        floor_maps = floor_maps_repo.images;
+                        if (this.currentStore.z_coordinate == 0) {
+                            var floor_0 = {};
+                            floor_0.id = "basement-floor";
+                            floor_0.title = "Level 0";
+                            floor_0.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40469);}).image_url;
+                            floor_0.z_index = 0;
+                            floor_0.show = true;
+                            
+                            floor_list.push(floor_0);
+                        } else if (this.currentStore.z_coordinate == 1) {
+                            var floor_1 = {};
+                            floor_1.id = "first-floor";
+                            floor_1.title = "Level 1";
+                            floor_1.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40470);}).image_url;
+                            floor_1.z_index = 1;
+                            floor_1.show = true;
+                            
+                            floor_list.push(floor_1);
+                        } else if (this.currentStore.z_coordinate == 2) {
+                            var floor_2 = {};
+                            floor_2.id = "second-floor";
+                            floor_2.title = "Level 2";
+                            floor_2.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40471);}).image_url;
+                            floor_2.z_index = 2;
+                            floor_2.show = true;
+                            
+                            floor_list.push(floor_2);
+                        }
+                    }
                     
                     return floor_list;
                 }
-                
-                // getSVGurl() {
-                //     return "https://www.mallmaverick.com" + this.property.svg_map_url;
-                // },
-                // svgMapRef() {
-                //     return this.$refs.svgmap_ref;
-                // },
-                // allStores() {
-                //     this.processedStores.map(function(store){
-                //         store.zoom = 4;
-                //     })
-                //     return this.processedStores;
-                // },
-                // floorList () {
-                //     var floor_list = [];
-                    
-                //     //get svg maps from repo
-                //     var floor_maps_repo = this.findRepoByName('SVG Maps');
-                    
-                //     if(floor_maps_repo !== null && floor_maps_repo !== undefined && floor_maps_repo.images.length > 0){
-                //         floor_maps = floor_maps_repo.images;
-                //         if (this.currentStore.z_coordinate == 0) {
-                //             var floor_0 = {};
-                //             floor_0.id = "basement-floor";
-                //             floor_0.title = "Level 0";
-                //             floor_0.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40469);}).image_url;
-                //             floor_0.z_index = 0;
-                //             floor_0.show = true;
-                            
-                //             floor_list.push(floor_0);
-                //         } else if (this.currentStore.z_coordinate == 1) {
-                //             var floor_1 = {};
-                //             floor_1.id = "first-floor";
-                //             floor_1.title = "Level 1";
-                //             floor_1.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40470);}).image_url;
-                //             floor_1.z_index = 1;
-                //             floor_1.show = true;
-                            
-                //             floor_list.push(floor_1);
-                //         } else if (this.currentStore.z_coordinate == 2) {
-                //             var floor_2 = {};
-                //             floor_2.id = "second-floor";
-                //             floor_2.title = "Level 2";
-                //             floor_2.map = _.find(floor_maps, function(o){ return _.toNumber(o.id) == _.toNumber(40471);}).image_url;
-                //             floor_2.z_index = 2;
-                //             floor_2.show = true;
-                            
-                //             floor_list.push(floor_2);
-                //         }
-                //     }
-                    
-                //     return floor_list;
-                // }
             },
             methods: {
-                loadData: async function () {
+                loadData: async function() {
                     try {
-                        let results = await Promise.all([this.$store.dispatch("getData", "categories"), this.$store.dispatch("getData","promotions"), this.$store.dispatch("getData","jobs")]);
+                        // avoid making LOAD_META_DATA call for now as it will cause the entire Promise.all to fail since no meta data is set up.
+                        let results = await Promise.all([this.$store.dispatch("getData","promotions"), this.$store.dispatch("getData", "jobs"), this.$store.dispatch("getData", "repos")]);
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
                     }
                 },
-                updateCurrentStore(id) {
+                updateCurrentStore (id) {
                     this.currentStore = this.findStoreBySlug(id);
-                    if (this.currentStore === null || this.currentStore === undefined) {
-                        this.$router.replace({ name: 'stores' });
+                    if (this.currentStore === null || this.currentStore === undefined){
+                        this.$router.replace({ path: '/'});
                     }
                 },
-                updateSVGMap(currentStore) {
-                    console.log(map)
+                updateSVGMap(map) {
                     this.map = map;
-                    var store = currentStore
-                    this.svgMapRef.showLocation(store.svgmap_region);
-                    this.svgMapRef.addActiveClass(store.svgmap_region);
+                    this.svgMapRef.showLocation(this.currentStore.svgmap_region);
+                    this.svgMapRef.addActiveClass(this.currentStore.svgmap_region);
                 },
                 dropPin(store) {
                     this.svgMapRef.showLocation(store.svgmap_region);
                 },
-                isMultiDay(promo) {
-                    var timezone = this.timezone
-                    var start_date = moment(promo.start_date).tz(timezone).format("MM-DD-YYYY")
-                    var end_date = moment(promo.end_date).tz(timezone).format("MM-DD-YYYY")
-                    if (start_date === end_date) {
-                        return false
-                    } else {
-                        return true
-                    }
-                }
             }
         });
     });
