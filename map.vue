@@ -100,27 +100,13 @@
             //         return floor_list;
             //     }
             // },
-            // methods: {
-            //     loadData: async function () {
-            //         try {
-            //             let results = await Promise.all([this.$store.dispatch("getData", "repos")]);
-            //             return results;
-            //         } catch (e) {
-            //             console.log("Error loading data: " + e.message);
-            //         }
-            //     },
-            //     dropPin(store) {
-            //         this.pngMapRef.showLocation(store.id);
-            //     }
-            // }
+
             computed: {
                 ...Vuex.mapGetters([
                     "property",
                     "timezone",
-                    "repos",
                     "findRepoByName",
                     "processedStores",
-                    'storesByAlphaIndex',
                 ]),
                 allStores() {
                     var all_stores = this.processedStores;
@@ -138,15 +124,12 @@
                 },
                 getSVGMap() {
                     var svg_maps = this.findRepoByName("SVG Maps").images 
-                    console.log(svg_maps)
                     var floor_one = "";
                     var floor_two = "";
                     _.forEach(svg_maps, function(value, key) {
                         if(value.id == 41084) {
-                            console.log(value)
                             floor_one = _.split(value.image_url, '?');
                             floor_one = floor_one[0];
-                            console.log(floor_one)
                         }
                         if (value.id == 41085) {
                             floor_two = _.split(value.image_url, '?');
@@ -205,14 +188,6 @@
                         console.log("Error loading data: " + e.message);
                     }
                 },
-                filterStores (letter) {
-                    if(letter == "All" || letter == undefined || letter == null){
-                        this.filteredStores = this.processedStores;
-                    } else {
-                        var filtered = _.filter(this.storesByAlphaIndex, function(o,i) { return _.lowerCase(i) == _.lowerCase(letter); })[0];
-                        this.filteredStores = filtered
-                    }
-                },
                 onOptionSelect(option) {
                     this.$nextTick(function() {
                         this.storeSearch = ""
@@ -220,7 +195,6 @@
                     this.svgMapRef.addMarker(option);
                 },
                 dropPin(store) {
-                    console.log(store)
                     this.$refs.mapplic_ref.showLocation(store.svgmap_region);
                 }
             }
