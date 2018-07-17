@@ -149,6 +149,7 @@
                     var floor_two = "";
                     _.forEach(svg_maps, function(value, key) {
                         if(value.id == 41084) {
+                            console.log(value)
                             floor_one = _.split(value.image_url, '?');
                             floor_one = floor_one[0];
                         }
