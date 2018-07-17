@@ -138,7 +138,7 @@
                     all_stores.push(initZoom)
                     return all_stores
                 },
-                getSVGMap () {
+                getSVGMap() {
                     var svg_maps = this.findRepoByName("SVG Maps").images 
                     console.log(svg_maps)
                     var floor_one = "";
