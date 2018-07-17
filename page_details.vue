@@ -55,6 +55,15 @@
                     this.$nextTick(function() {
                         var _this = this;
                         this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
+                            var temp_repo = _this.findRepoByName('Inside Page Banner').images;
+                            if(temp_repo != null) {
+                                _this.pageBanner = temp_repo[0];
+                            } else {
+                                _this.pageBanner = {
+                                    "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
+                                }
+                            }  
+                            
                             _this.currentPage = response.data;
                             _this.dataLoaded = true;
                         }, function (error) {
