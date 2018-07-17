@@ -167,29 +167,29 @@
                         this.storeHours = storeHours;
                     }
                     
+                    var vm = this;
                     var temp_promo = [];
-                    var temp_job = [];
                     _.forEach(this.currentStore.promotions, function(value, key) {
                         var current_promo = vm.findPromoById(value);
-                        current_promo.description_short = _.truncate(current_promo.description, {
-                            'length': 70
-                        });
+                        
+                        if (_.includes(current_promo.image_url, 'missing')) {
+                            current_promo.image_url = "http://placehold.it/1560x800/757575";
+                        }
+                        current_promo.description_short = _.truncate(current_promo.description, { 'length': 150, 'separator': ' ' });
+
                         temp_promo.push(current_promo);
-                    });
+                    }); 
+                    this.storePromotions = temp_promo;
+                    this.togglePromos = true;
+                    
+                    var vm = this;
+                    var temp_job = [];
                     _.forEach(this.currentStore.jobs, function(value, key) {
                         var current_job = vm.findJobById(value);
-                        current_job.description_short = _.truncate(current_job.description, {
-                            'length': 70
-                        });
                         temp_job.push(current_job);
-
-                    })
-                    this.promotions = temp_promo;
-                    this.jobs = temp_job;
-                    
-                    // setTimeout(function() {
-                    //     vm.addLandmark(vm.currentStore);
-                    // }, 500);
+                    }); 
+                    this.storeJobs = temp_job;
+                    this.toggleJobs = true;
                 },
             },
             computed: {
