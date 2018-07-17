@@ -115,7 +115,7 @@
                     currentStore: null,
                     promotions : [],
                     jobs:[],
-                    hours: [],
+                    storeHours: [],
                 }
             },
             props:['id'],
