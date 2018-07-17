@@ -26,7 +26,7 @@
                         </div>
                         <div class="details_col_9">
                             <div id="map" class="margin_20">
-                                <svg-map  ref="svgmapRef"  @updateMap="updateSVGMap"  :svgMapUrl="getSVGurl" ></svg-map>
+                                <mapplic-map ref="mapplic_ref" :height="566" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>
                             </div>
                             <div class="inside_page_header">Store Hours & Information</div>
                             <ul v-if="storeHours" class="store_details_hours_list">
