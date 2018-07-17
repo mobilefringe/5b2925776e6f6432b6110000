@@ -200,7 +200,7 @@
                     'property',
                     'timezone',
                     'findRepoByName',
-                    'stores',
+                    'processedStores',
                     'findStoreBySlug',
                     'findCategoryById',
                     'findHourById',
