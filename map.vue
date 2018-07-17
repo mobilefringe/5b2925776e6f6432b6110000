@@ -152,6 +152,7 @@
                             console.log(value)
                             floor_one = _.split(value.image_url, '?');
                             floor_one = floor_one[0];
+                            console.log(floor_one)
                         }
                         if (value.id == 41085) {
                             floor_two = _.split(value.image_url, '?');
