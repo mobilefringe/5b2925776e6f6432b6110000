@@ -35,11 +35,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="fieldzyklki">Postal Code</label>
-                                        <input id="fieldzyklki" class="margin_20 form-control" name="cm-f-zyklki" type="text" required placeholder="Postal Code"/>
+                                        <input id="fieldzyklki" class="margin_20 form-control" name="cm-f-zyklki" type="text" placeholder="Postal Code"/>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="newsletter_email">Email</label>
-                                        <input v-model="form_data.email" required class="margin_20 form-control" name="cm-vltuui-vltuui" type="email" placeholder="Email" id="newsletter_email">
+                                        <input id="cm-vuutyk-vuutyk" v-model="form_data.email" required class="margin_20 form-control" name="cm-vuutyk-vuutyk" type="email" placeholder="Email">
                                     </div>
                                     <div class="col-md-12">
                                         <div style="margin-left: 20px">
@@ -90,12 +90,12 @@
             },
             mounted () {
                 this.form_data.email = this.$route.query.email;
-                $("#newsletter_email").val(this.form_data.email);
+                $("#cm-vuutyk-vuutyk").val(this.form_data.email);
             },
             watch : {
                 $route () {
                     this.form_data.email = this.$route.query.email;
-                    $("#newsletter_email").val(this.form_data.email);
+                    $("#cm-vuutyk-vuutyk").val(this.form_data.email);
                 }
             },
             computed: {
