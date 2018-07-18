@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="fieldzyklkj">First Name</label>
-                                        <input id="fieldzyklkj" class="margin_20 form-control" name="cm-f-zyklkj" type="text" v-model="form_data.name" required placeholder="First Name" />
+                                        <input id="fieldzyklkj" class="margin_20 form-control" name="cm-f-zyklkj" type="text" required placeholder="First Name" />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="fieldzyklkt">Last Name</label>
@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="cm-vuutyk-vuutyk">Email</label>
-                                        <input id="cm-vuutyk-vuutyk" v-model="form_data.email" required class="margin_20 form-control" name="cm-vuutyk-vuutyk" type="email" placeholder="Email">
+                                        <input id="cm-vuutyk-vuutyk" required class="margin_20 form-control" name="cm-vuutyk-vuutyk" type="email" placeholder="Email">
                                     </div>
                                     <div class="col-md-12">
                                         <div style="margin-left: 20px">
