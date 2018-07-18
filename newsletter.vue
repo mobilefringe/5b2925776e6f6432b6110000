@@ -38,7 +38,7 @@
                                         <input id="fieldzyklki" class="margin_20 form-control" name="cm-f-zyklki" type="text" placeholder="Postal Code"/>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="newsletter_email">Email</label>
+                                        <label for="cm-vuutyk-vuutyk">Email</label>
                                         <input id="cm-vuutyk-vuutyk" v-model="form_data.email" required class="margin_20 form-control" name="cm-vuutyk-vuutyk" type="email" placeholder="Email">
                                     </div>
                                     <div class="col-md-12">
