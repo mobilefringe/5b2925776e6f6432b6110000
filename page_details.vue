@@ -54,6 +54,7 @@
                 updateCurrentPage(id) {
                     this.$nextTick(function() {
                         var _this = this;
+                        this.property.mm_host = this.property.mm_host.replace("http:", "");
                         this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + _this.id + ".json" }).then(function (response) {
                             var temp_repo = _this.findRepoByName('Inside Page Banner').images;
                             if(temp_repo != null) {
