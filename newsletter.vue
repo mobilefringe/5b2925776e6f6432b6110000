@@ -23,11 +23,15 @@
                         </div>
                         <div class="details_col_9">
                             <p class="inside_page_link">Be the first to know about upcoming events and special announcements from {{ property.name }}!</p>
-                            <form class="form-horizontal" action="//mobilefringe.createsend.com/t/d/s/vltuui/" method="post" @submit.prevent="validateBeforeSubmit">
+                            <form class="form-horizontal" action="//mobilefringe.createsend.com/t/d/s/vuutyk/" method="post" @submit.prevent="validateBeforeSubmit">
                                 <div class="row">
-                                    <div class="col-sm-8" >
-                                        <label for="cm-name">Name</label>
-                                        <input id="cm-name" v-model="form_data.name" required class="margin_20 form-control" name="cm-name" type="text" placeholder="Name">
+                                    <div class="col-md-6">
+                                        <label for="fieldzyklkj">First Name</label>
+                                        <input id="fieldzyklkj" class="margin_20 form-control" name="cm-f-zyklkj" type="text" v-model="form_data.name" required placeholder="First Name" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="fieldzyklkt">Last Name</label>
+                                        <input id="fieldzyklkt" class="margin_20 form-control" name="cm-f-zyklkt" type="text" required placeholder="Last Name" />
                                     </div>
                                     <div class="col-sm-8">
                                         <label for="newsletter_email">Email</label>
