@@ -33,7 +33,11 @@
                                         <label for="fieldzyklkt">Last Name</label>
                                         <input id="fieldzyklkt" class="margin_20 form-control" name="cm-f-zyklkt" type="text" required placeholder="Last Name" />
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-md-6">
+                                        <label for="fieldzyklki">Postal Code</label>
+                                        <input id="fieldzyklki" class="margin_20 form-control" name="cm-f-zyklki" type="text" required placeholder="Postal Code"/>
+                                    </div>
+                                    <div class="col-md-6">
                                         <label for="newsletter_email">Email</label>
                                         <input v-model="form_data.email" required class="margin_20 form-control" name="cm-vltuui-vltuui" type="email" placeholder="Email" id="newsletter_email">
                                     </div>
