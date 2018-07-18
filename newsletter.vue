@@ -41,7 +41,7 @@
                                         <label for="newsletter_email">Email</label>
                                         <input v-model="form_data.email" required class="margin_20 form-control" name="cm-vltuui-vltuui" type="email" placeholder="Email" id="newsletter_email">
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-md-12">
                                         <div style="margin-left: 20px">
                                             <label class="checkbox">
                                                 <input name="agree_newsletter" required  type="checkbox">
