@@ -28,8 +28,8 @@
                             </div>
                             <div class="inside_page_header">Store Hours & Information</div>
                             <ul v-if="storeHours" class="store_details_hours_list">
-                                <li v-for="hour in storeHours" :class="{ today: hour.todays_hours }">{{hour.open_full_day}}
-                                    <div v-if="!hour.is_closed">
+                                <li v-for="hour in storeHours" :class="{ today: hour.todays_hours }">
+                                    <div v-if="hour.is_closed">
                                         <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>CLOSED
                                     </div>
                                     <div v-else-if="hour.open_full_day">
