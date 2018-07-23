@@ -84,7 +84,8 @@
                     loginPending: null,
                     formSuccess: false,
                     formError: false,
-                    time: new Date()
+                    time: new Date(),
+                    currentPage
                 }
             },
             created() {
