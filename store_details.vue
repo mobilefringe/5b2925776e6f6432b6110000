@@ -33,7 +33,7 @@
                                         <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>CLOSED
                                     </div>
                                     <div v-else-if="hour.open_full_day">
-                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>OPEN 24 HOURS
+                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>Open 24 HOURS
                                     </div>
                                     <div v-else>
                                         <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>{{hour.open_time | moment("h:mma", timezone)}} - {{hour.close_time | moment("h:mma", timezone)}}
