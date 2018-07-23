@@ -99,7 +99,7 @@
                         }
                     }
                     console.log("response",response[0].data);
-                    this.currentPage = response.data;
+                    this.currentPage = response[0].data;
                     this.dataLoaded = true;
                 });
             },
