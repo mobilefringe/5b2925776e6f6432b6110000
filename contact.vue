@@ -85,7 +85,7 @@
                     formSuccess: false,
                     formError: false,
                     time: new Date(),
-                    currentPage
+                    currentPage: null
                 }
             },
             created() {
