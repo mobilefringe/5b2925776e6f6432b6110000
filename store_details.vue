@@ -162,6 +162,9 @@
                     if (this.currentStore.store_hours) {
                         var storeHours = [];
                         _.forEach(this.currentStore.store_hours, function (value, key) {
+                            if(value.open_full_day) {
+                                
+                            }
                             storeHours.push(vm.findHourById(value));
                         });
                         this.storeHours = storeHours;
