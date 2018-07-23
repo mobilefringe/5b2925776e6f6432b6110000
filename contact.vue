@@ -98,7 +98,7 @@
                             "image_url": "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531495616000/inside_banner.png"
                         }
                     }
-                    console.log("response". response)
+                    console.log("response",response);
                     this.currentPage = response.data;
                     this.dataLoaded = true;
                 });
