@@ -33,7 +33,7 @@
                                         <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>CLOSED
                                     </div>
                                     <div v-else-if="hour.open_full_day">
-                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>Open 24 HOURS
+                                        <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>Open 24 Hours
                                     </div>
                                     <div v-else>
                                         <span class="hours_list_day">{{hour.day_of_week | moment("dddd", timezone)}} </span>{{hour.open_time | moment("h:mma", timezone)}} - {{hour.close_time | moment("h:mma", timezone)}}
@@ -225,7 +225,6 @@
                     
                     if(floor_maps_repo !== null && floor_maps_repo !== undefined && floor_maps_repo.images.length > 0){
                         floor_maps = floor_maps_repo.images;
-                        console.log("Coord ", this.currentStore.z_coordinate)
                         if (this.currentStore.z_coordinate == 1) {
                             var floor_1 = {};
                             floor_1.id = "first-floor";
