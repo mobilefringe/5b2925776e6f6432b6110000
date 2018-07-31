@@ -95,6 +95,15 @@
                         console.log("Error loading data: " + e.message);    
                     }
                 }
+            },
+            metaInfo () {
+                return {
+                    title: this.meta.meta_title,
+                    meta: [
+                        {name: 'description', content: this.meta.meta_description},
+                        {name: 'keywords', content: this.meta.meta_keywords}
+                    ] 
+                }
             }
         })
     })
