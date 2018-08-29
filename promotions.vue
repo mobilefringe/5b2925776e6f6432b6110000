@@ -109,7 +109,6 @@
                     _.forEach(this.processedPromos, function(value, key) {
                         var today = moment.tz(this.timezone).format();
                         var showOnWebDate = moment.tz(value.show_on_web_date, this.timezone).format();
-                        console.log(value.store)
                         if (today >= showOnWebDate) {
                             if (value.store != null && value.store != undefined) {
                                 if (_.includes(value.store.store_front_url_abs, 'missing')) {
