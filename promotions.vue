@@ -109,6 +109,7 @@
                     _.forEach(this.processedPromos, function(value, key) {
                         var today = moment.tz(this.timezone).format();
                         var showOnWebDate = moment.tz(value.show_on_web_date, this.timezone).format();
+                        console.log(value.store)
                         if (today >= showOnWebDate) {
                             if (value.store != null && value.store != undefined && _.includes(value.store.image_url, 'missing')) {
                                 value.store.image_url = "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531496516000/promo placeholder.png";
