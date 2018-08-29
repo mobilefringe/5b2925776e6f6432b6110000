@@ -112,7 +112,11 @@
                         console.log(value.store)
                         if (today >= showOnWebDate) {
                             if (value.store != null && value.store != undefined) {
-                                value.image_url = value.store.store_front_url_abs;
+                                if (_.includes(value.store.store_front_url_abs, 'missing')) {
+                                    value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531496516000/promo placeholder.png";    
+                                } else {
+                                    value.image_url = value.store.store_front_url_abs;    
+                                }
                             } else {
                                 value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531496516000/promo placeholder.png";    
                             }
