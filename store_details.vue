@@ -22,8 +22,6 @@
                         </div>
                         <div class="details_col_9">
                             <div id="map" class="margin_20">
-                                <!--<mapplic-map ref="mapplic_ref" :height="400" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="false" :maxscale= "5" :storelist="allStores" :floorlist="floorList" tooltiplabel="View Store Details"></mapplic-map>-->
-                                
                                 <mapplic-map ref="svgmap_ref" :height="300" :minimap= "false" :deeplinking="false" :sidebar="false" :hovertip="true" :maxscale= "5" :storelist="processedStores" :floorlist="floorList" :svgWidth="2500" :svgHeight="2500" @updateMap="updateSVGMap" :key="currentStore.id"></mapplic-map>
                             </div>
                             <div class="inside_page_header">Store Hours & Information</div>
@@ -53,10 +51,11 @@
                                     <b-collapse v-for="promo in storePromotions" v-model="togglePromos" role="tabpanel" id="togglePromotions" class="accordion_body">
                                         <b-card-body>
                                             <div class="row">
-                                                <div class="col-md-5" v-if="">
-                                                    <img :src="promo.image_url" :alt="'Promotion: ' + promo.name" />
-                                                </div>
-                                                <div class="col-md-7">
+                                                <!--<div class="col-md-5" v-if="">-->
+                                                <!--    <img :src="promo.image_url" :alt="'Promotion: ' + promo.name" />-->
+                                                <!--</div>-->
+                                                <!--<div class="col-md-7">-->
+                                                <div class="col-md-12">
                                                     <h3 class="promo_name">{{promo.name}}</h3>
                                                     <p class="promo_date" v-if="isMultiDay(promo)">
                         							    {{ promo.start_date | moment("MMMM D", timezone)}} to {{ promo.end_date | moment("MMMM D", timezone)}}
