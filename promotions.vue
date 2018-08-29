@@ -117,9 +117,9 @@
                                 value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531496516000/promo placeholder.png";    
                             }
                             
-                            if (_.includes(value.image_url, 'missing')) {
-                                value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531496516000/promo placeholder.png";
-                            }
+                            // if (_.includes(value.image_url, 'missing')) {
+                            //     value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b2925776e6f6432b6110000/image/png/1531496516000/promo placeholder.png";
+                            // }
                             
                             value.description_short = _.truncate(value.description, { 'length': 100, 'separator': ' ' });
                             
