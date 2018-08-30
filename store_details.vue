@@ -51,10 +51,6 @@
                                     <b-collapse v-for="promo in storePromotions" v-model="togglePromos" role="tabpanel" id="togglePromotions" class="accordion_body">
                                         <b-card-body>
                                             <div class="row">
-                                                <!--<div class="col-md-5" v-if="">-->
-                                                <!--    <img :src="promo.image_url" :alt="'Promotion: ' + promo.name" />-->
-                                                <!--</div>-->
-                                                <!--<div class="col-md-7">-->
                                                 <div class="col-md-12">
                                                     <h3 class="promo_name">{{promo.name}}</h3>
                                                     <p class="promo_date" v-if="isMultiDay(promo)">
