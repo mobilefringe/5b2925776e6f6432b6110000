@@ -219,42 +219,42 @@
                     }
                     else {
                         this.currentStore.zoom = 2;
-                    if ( _.includes(this.currentStore.store_front_url_abs, 'missing')) {
-                        this.currentStore.store_front_url_abs = this.property.default_logo_url;
-                    }
-                    
-                    var vm = this;
-                    if (this.currentStore.store_hours) {
-                        var storeHours = [];
-                        _.forEach(this.currentStore.store_hours, function (value, key) {
-                            storeHours.push(vm.findHourById(value));
-                        });
-                        this.storeHours = storeHours;
-                    }
-                    
-                    var vm = this;
-                    var temp_promo = [];
-                    _.forEach(this.currentStore.promotions, function(value, key) {
-                        var current_promo = vm.findPromoById(value);
-                        
-                        if (_.includes(current_promo.image_url, 'missing')) {
-                            current_promo.image_url = "http://placehold.it/1560x800/757575";
+                        if ( _.includes(this.currentStore.store_front_url_abs, 'missing')) {
+                            this.currentStore.store_front_url_abs = this.property.default_logo_url;
                         }
-                        current_promo.description_short = _.truncate(current_promo.description, { 'length': 150, 'separator': ' ' });
-
-                        temp_promo.push(current_promo);
-                    }); 
-                    this.storePromotions = temp_promo;
-                    this.togglePromos = true;
-                    
-                    var vm = this;
-                    var temp_job = [];
-                    _.forEach(this.currentStore.jobs, function(value, key) {
-                        var current_job = vm.findJobById(value);
-                        temp_job.push(current_job);
-                    }); 
-                    this.storeJobs = temp_job;
-                    this.toggleJobs = true;
+                        
+                        var vm = this;
+                        if (this.currentStore.store_hours) {
+                            var storeHours = [];
+                            _.forEach(this.currentStore.store_hours, function (value, key) {
+                                storeHours.push(vm.findHourById(value));
+                            });
+                            this.storeHours = storeHours;
+                        }
+                        
+                        var vm = this;
+                        var temp_promo = [];
+                        _.forEach(this.currentStore.promotions, function(value, key) {
+                            var current_promo = vm.findPromoById(value);
+                            
+                            if (_.includes(current_promo.image_url, 'missing')) {
+                                current_promo.image_url = "http://placehold.it/1560x800/757575";
+                            }
+                            current_promo.description_short = _.truncate(current_promo.description, { 'length': 150, 'separator': ' ' });
+    
+                            temp_promo.push(current_promo);
+                        }); 
+                        this.storePromotions = temp_promo;
+                        this.togglePromos = true;
+                        
+                        var vm = this;
+                        var temp_job = [];
+                        _.forEach(this.currentStore.jobs, function(value, key) {
+                            var current_job = vm.findJobById(value);
+                            temp_job.push(current_job);
+                        }); 
+                        this.storeJobs = temp_job;
+                        this.toggleJobs = true;
                     }
                 },
                 updateSVGMap(map) {
