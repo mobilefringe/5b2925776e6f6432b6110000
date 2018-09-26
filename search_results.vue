@@ -99,7 +99,6 @@
                     if(temp_repo !== null && temp_repo !== undefined) {
                        temp_repo = temp_repo.images;
                        this.pageBanner = temp_repo[0];
-                       console.log("this.pageBanner", _this.pageBanner);
                     }
                     else {
                         _this.pageBanner = {
