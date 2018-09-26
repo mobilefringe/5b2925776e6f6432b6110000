@@ -108,6 +108,7 @@
                     search_result: null,
                     suggestionAttribute: "name",
                     keys: ["name", "description", "tags", "keywords", "store.name"],
+                    headerReady: false
                 }
             },
             props:['menu_items', 'social_media'],
