@@ -98,7 +98,7 @@
                     var temp_repo = this.findRepoByName("Inside Page Banner");
                     if(temp_repo !== null && temp_repo !== undefined) {
                        temp_repo = temp_repo.images;
-                       _this.pageBanner = temp_repo[0];
+                       this.pageBanner = temp_repo[0];
                        console.log("this.pageBanner", _this.pageBanner);
                     }
                     else {
